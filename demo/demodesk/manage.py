@@ -4,6 +4,7 @@ import sys
 
 def main():
     os.environ.setdefault("DJANGO_SETTINGS_MODULE", "demodesk.config.settings")
+    sys.path.insert(1, '../../helpdesk')
     try:
         from django.core.management import execute_from_command_line
     except ImportError:
