@@ -1,0 +1,69 @@
+format_version: 10
+pipelines:
+  django_helpdesk:
+    group: Nivo
+    label_template: ${COUNT}
+    lock_behavior: none
+    display_order: -1
+    materials:
+      git-8213b0c:
+        git: git@github.com:NivoLab/django-helpdesk.git
+        shallow_clone: false
+        auto_update: true
+        branch: stable
+    stages:
+      - Build:
+          fetch_materials: true
+          keep_artifacts: false
+          clean_workspace: false
+          approval:
+            type: success
+            allow_only_on_success: false
+          jobs:
+            docker_build_image:
+              timeout: 0
+              tasks:
+                - exec:
+                    arguments:
+                      - build
+                      - -t
+                      - django_helpdesk
+                      - .
+                    command: docker
+                    run_if: passed
+      - Deploy:
+          fetch_materials: false
+          keep_artifacts: false
+          clean_workspace: false
+          approval:
+            type: success
+            allow_only_on_success: false
+          jobs:
+            docker_rm_previous:
+              timeout: 0
+              tasks:
+                - exec:
+                    arguments:
+                      - service
+                      - rm
+                      - django_helpdesk
+                    command: docker
+                    run_if: passed
+            docker_service_create:
+              timeout: 0
+              tasks:
+                - exec:
+                    arguments:
+                      - service
+                      - create
+                      - --name
+                      - django_helpdesk
+                      - --constraint
+                      - "node.labels.type!=sg"
+                      - --network
+                      - main
+                      - --publish
+                      - 7121:8000
+                      - django_helpdesk
+                    command: docker
+                    run_if: any
