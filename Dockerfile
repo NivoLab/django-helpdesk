@@ -1,12 +1,10 @@
 FROM python:3.10-slim
 
 ENV PYTHONUNBUFFERED 1
-WORKDIR /app
 
 # install requriements 
-ADD requirements.txt /app
-RUN pip install --upgrade pip
-RUN pip install -r requirements.txt
+RUN python3.10 -m pip install --upgrade pip
+RUN python3.10 -m pip install -r requirements.txt
 
 ADD . /app
 
