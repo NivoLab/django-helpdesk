@@ -1111,6 +1111,11 @@ msgstr ""
 msgid "Helpdesk"
 msgstr ""
 
+#: templates/helpdesk/base.html:52 templates/helpdesk/public_base.html:6
+#: templates/helpdesk/public_base.html:18
+msgid "Nivo"
+msgstr ""
+
 #: templates/helpdesk/base.html:62 templates/helpdesk/rss_list.html:9
 #: templates/helpdesk/rss_list.html:12 templates/helpdesk/rss_list.html:15
 #: templates/helpdesk/rss_list.html:30 templates/helpdesk/rss_list.html:31

@@ -12,5 +12,8 @@ ADD . /app
 
 WORKDIR /app/demo
 
+ENV DJANGO_SUPERUSER_PASSWORD=demo1234
+
 CMD python3.10 manage.py migrate && \
+    python3.10 manage.py createsuperuser --username demo --email demo@demo.com --noinput && \
     python3.10 manage.py runserver 0.0.0.0:8000
