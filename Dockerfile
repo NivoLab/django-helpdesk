@@ -6,8 +6,6 @@ ENV PYTHONUNBUFFERED 1
 RUN python3.10 -m pip install --upgrade pip
 RUN python3.10 -m pip install -r requirements.txt
 
-ADD . /app
-
 WORKDIR demo/demodesk
 
 CMD python3.10 manage.py migrate && \
