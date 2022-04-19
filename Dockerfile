@@ -10,7 +10,7 @@ RUN python3.10 -m pip install -r requirements.txt
 
 ADD . /app
 
-WORKDIR /app/demo/demodesk
+WORKDIR /app/demo
 
 CMD python3.10 manage.py migrate && \
     python3.10 manage.py runserver 0.0.0.0:8000
