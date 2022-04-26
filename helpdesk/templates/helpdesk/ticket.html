@@ -195,7 +195,7 @@
                 <dd>
                     <div class="add_file_fields_wrap">
                         <button class="add_file_field_button btn btn-success btn-xs">{% trans "Add Another File" %}</button>
-                        <div><label class='btn btn-primary btn-sm btn-file'>
+                        <div><label class='btn btn-success btn-sm btn-file'>
                                 Browse... <input type="file" name='attachment' id='file0' style='display: none;'/>
                         </label><span>&nbsp;</span><span id='selectedfilename0'>{% trans 'No files selected.' %}</span></div>
                     </div>
@@ -206,7 +206,7 @@
 
         </fieldset>
 
-        <button class="btn btn-primary float-right" type='submit'>{% trans "Update This Ticket" %}</button>
+        <button class="btn btn-success float-right" type='submit'>{% trans "Update This Ticket" %}</button>
 
         {% csrf_token %}</form>
 
@@ -260,7 +260,7 @@ $(document).ready(function() {
     $(add_button).click(function(e){ //on add input button click
         x++;
         e.preventDefault();
-        $(wrapper).append("<div><label class='btn btn-primary btn-sm btn-file'>Browse... <input type='file' name='attachment' id='file" + x + "' multiple style='display: none;'/></label><span>&nbsp;</span><span id='selectedfilename" + x + "'>{% trans 'No files selected.' %}</span></div>"); //add input box
+        $(wrapper).append("<div><label class='btn btn-success btn-sm btn-file'>Browse... <input type='file' name='attachment' id='file" + x + "' multiple style='display: none;'/></label><span>&nbsp;</span><span id='selectedfilename" + x + "'>{% trans 'No files selected.' %}</span></div>"); //add input box
     });
 
 });

@@ -11,7 +11,7 @@
 {% endblock %}
 
 {% block helpdesk_body %}
-    <div class="container-fluid">
+    <div class="container-fluid" style="text-align: right;">
         <div class="row">
             {% if kb_categories %}
                 <div class="col-sm">
@@ -67,7 +67,7 @@
                                         </div>
                                     </div>
                                     <div class='buttons form-group'>
-                                        <input type='submit' class="btn btn-primary" value='{% trans "View Ticket" %}'/>
+                                        <input type='submit' class="btn btn-success" value='{% trans "View Ticket" %}'/>
                                     </div>
                                 </fieldset>
                             </form>

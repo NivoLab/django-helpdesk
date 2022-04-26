@@ -2,13 +2,14 @@
 
     {% include 'helpdesk/custom_navigation_header.html' %}
 
-    <nav class="navbar navbar-expand navbar-dark bg-dark static-top">
-
-      <a class="navbar-brand" href="{% url 'helpdesk:home' %}">{% trans 'Nivo' %}</a>
-
-      <button class="btn btn-link btn-sm text-white order-1 order-sm-0 mr-auto" id="sidebarToggle" href="#">
+    <nav class="navbar navbar-dark bg-dark static-top">
+      <div>
+      <!-- <button class="btn btn-link btn-sm text-white order-1 order-sm-0 " id="sidebarToggle" href="#">
         <i class="fas fa-bars"></i>
-      </button>
+      </button> -->
+      <a class="navbar-brand" href="{% url 'helpdesk:home' %}">{% trans 'نیوُ' %}</a></div>
+
+      
 
       {% if helpdesk_settings.HELPDESK_NAVIGATION_ENABLED and user.is_authenticated or user|is_helpdesk_staff %}
       <!-- Navbar Search -->
@@ -17,7 +18,7 @@
           <input type="text" class="form-control" name='q' size='15' placeholder='{% trans "Search..." %}' id='search_query' title='{% trans "Enter a keyword, or a ticket number to jump straight to that ticket." %}' aria-label="Search" aria-describedby="basic-addon2">
           <input type='hidden' name='status' value='1' /><input type='hidden' name='status' value='2' /><input type='hidden' name='status' value='3' /><input type='hidden' name='search_type' value='header' />
           <div class="input-group-append">
-            <button class="btn btn-primary" type="submit">
+            <button class="btn btn-success" type="submit">
               <i class="fas fa-search"></i> {% trans 'Go' %}
             </button>
           </div>

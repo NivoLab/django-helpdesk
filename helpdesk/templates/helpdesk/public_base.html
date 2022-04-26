@@ -3,7 +3,7 @@
 {% load load_helpdesk_settings %}
 {% with request|load_helpdesk_settings as helpdesk_settings %}
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" dir="rtl">
 
 <head>
 
@@ -12,7 +12,7 @@
 
 </head>
 
-<body id="bg-dark">
+<body id="bg-dark" style="text-align: right;">
 
     {% include "helpdesk/navigation-header.html" %}
 
@@ -21,12 +21,12 @@
 
         <div id="content-wrapper">
 
-            <div class="container-fluid">
+            <div style="text-align: right;" class="container-fluid">
 
                 <!-- Breadcrumbs-->
-                <ol class="breadcrumb">
+                <!-- <ol class="breadcrumb">
                     {% block helpdesk_breadcrumb %}{% endblock %}
-                </ol>
+                </ol> -->
 
                 {% block helpdesk_body %}{% endblock %}
 

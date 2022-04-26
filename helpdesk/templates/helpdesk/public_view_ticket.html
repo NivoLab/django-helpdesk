@@ -54,7 +54,7 @@
 </tr>
 
 {% if ticket.resolution %}<tr>
-    <th colspan='2'>{% trans "Resolution" %}{% if ticket.get_status_display == "Resolved" %} <a href='{{ ticket.ticket_url }}&close'><button type="button" class="btn btn-primary btn-xs">{% trans "Accept and Close" %}</button></a>{% endif %}</th>
+    <th colspan='2'>{% trans "Resolution" %}{% if ticket.get_status_display == "Resolved" %} <a href='{{ ticket.ticket_url }}&close'><button type="button" class="btn btn-success btn-xs">{% trans "Accept and Close" %}</button></a>{% endif %}</th>
 </tr>
 <tr>
     <td colspan='2'>{{ ticket.resolution|urlizetrunc:50|linebreaksbr }}</td>
@@ -141,7 +141,7 @@
         <dt><label for='id_file'>{% trans "Attach a File" %}</label></dt>
         <dd>
             <div class="add_file_fields_wrap">
-                <div><label class='btn btn-primary btn-sm btn-file'>
+                <div><label class='btn btn-success btn-sm btn-file'>
                         Browse... <input type="file" name='attachment' id='file0' style='display: none;'/>
                 </label><span>&nbsp;</span><span id='selectedfilename0'>{% trans 'No files selected.' %}</span></div>
             </div>
@@ -152,7 +152,7 @@
 
 </fieldset>
 
-<button class="btn btn-primary btn-lg" type='submit'>{% trans "Update This Ticket" %}</button>
+<button class="btn btn-success btn-lg" type='submit'>{% trans "Update This Ticket" %}</button>
 
 {% csrf_token %}</form>
 

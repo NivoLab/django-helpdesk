@@ -5,7 +5,7 @@
 {% with request|load_helpdesk_settings as helpdesk_settings %}
 {% with user|saved_queries as user_saved_queries_ %}
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" dir="rtl">
 
 <head>
 
@@ -24,12 +24,12 @@
 
         <div id="content-wrapper">
         
-            <div class="container-fluid">
+            <div style="text-align: right;" class="container-fluid">
 
                 <!-- Breadcrumbs-->
-                <ol class="breadcrumb">
+                <!-- <ol class="breadcrumb">
                     {% block helpdesk_breadcrumb %}{% endblock %}
-                </ol>
+                </ol> -->
             
                 {% block helpdesk_body %}{% endblock %}
             

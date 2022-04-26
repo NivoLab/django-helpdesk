@@ -31,7 +31,7 @@
                     <option value="">--------</option>{% for q in user_saved_queries_ %}
                     <option value="{{ q.id }}"{% ifequal saved_query q %} selected{% endifequal %}>{{ q.title }}</option>{% endfor %}
                 </select>
-                <input class="btn btn-primary" type='submit' value='{% trans "Filter Report" %}'>
+                <input class="btn btn-success" type='submit' value='{% trans "Filter Report" %}'>
             </form>
         {% else %}
             <p>{% trans "Want to filter this report to just show a subset of data? Go to the Ticket List, filter your query, and save your query." %}</p>

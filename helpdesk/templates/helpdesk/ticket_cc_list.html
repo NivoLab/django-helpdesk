@@ -82,7 +82,7 @@
 
     <p>
         <a href='{% url 'helpdesk:view' ticket.id %}'>
-            <button class="btn btn-primary btn-lg">
+            <button class="btn btn-success btn-lg">
                 {% blocktrans with ticket.title as ticket_title %}Return to <em>{{ ticket_title }}</em>{% endblocktrans %}
             </button>
         </a>

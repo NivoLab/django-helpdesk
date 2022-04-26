@@ -204,7 +204,7 @@ EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 # The most complete translations are: es-MX, ru, zh-Hans
 # Contribute to our translations via Transifex if you can!
 # See CONTRIBUTING.rst for more info.
-LANGUAGE_CODE = 'en-US'
+LANGUAGE_CODE = 'fa'
 
 TIME_ZONE = 'UTC'
 

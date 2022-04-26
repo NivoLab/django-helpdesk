@@ -23,7 +23,7 @@
     </div>
     <div class="card-body">
         <p class="card-text">{{ category.description }}</p>
-        <p class="card-text"><small class="text-muted"><a class="btn btn-primary" href='{{ category.get_absolute_url }}'>{% trans 'View articles' %} <i class="fa fa-share"></i></a></small></p>
+        <p class="card-text"><small class="text-muted"><a class="btn btn-success" href='{{ category.get_absolute_url }}'>{% trans 'View articles' %} <i class="fa fa-share"></i></a></small></p>
     </div>
 </div>
 {% if catnumperrow == 'three' %}</div>{% endif %}
