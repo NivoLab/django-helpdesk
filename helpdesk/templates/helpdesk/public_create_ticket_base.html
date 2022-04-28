@@ -3,21 +3,24 @@
 
 {% with request|load_helpdesk_settings as helpdesk_settings %}
     {% if helpdesk_settings.HELPDESK_SUBMIT_A_TICKET_PUBLIC %}
-        <p>
-            {% trans "Unless otherwise stated, all fields are required." %}
-            {% trans "Please provide as descriptive a title and description as possible." %}
-        </p>
-
-        {% if form.errors %}
-            {% include 'helpdesk/include/alert_form_errors.html' %}
-        {% endif %}
-        <form role="form" method='post' enctype='multipart/form-data'>
-            {% csrf_token %}
-            {{ form|bootstrap4form }}
-            <button type="submit" class="btn btn-success btn-lg btn-block">
-                {% trans "Submit Ticket" %} <i class="fa fa-paper-plane"></i>
-            </button>
-        </form>
+    <div>
+        <select class="select">
+            <option selected disabled hidden class="optionFirst">نوع تیکت | لطفا یکی از گزینه های زیر را انتخاب کنید</option>
+        </select>
+        <select class="select" style="margin-top: 20px;">
+            <option selected disabled hidden class="optionFirst">موضوع تیکت | لطفا یکی از گزینه های زیر را انتخاب کنید</option>
+        </select>
+        <textarea class="textarea" placeHolder="متن پیام خود را وارد کنید" ></textarea>
+        <div class="fileSender">
+            <div class="fileInside">
+                <img src="../../static/helpdesk/images/Paperclip.svg" />
+                <input type="file" class="fileInsideText"></input>
+            </div>
+        </div>
+        <button  type="submit" class="submit-btn">
+            <p class="ticket-btnText">ثبت نظر</p>
+        </button>
+    </div>
     {% else %}
         <p>{% trans "Public ticket submission is disabled. Please contact the administrator for assistance." %}</p>
     {% endif %}

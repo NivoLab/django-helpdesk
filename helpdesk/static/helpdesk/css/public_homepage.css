@@ -1,0 +1,308 @@
+@font-face {
+  font-family : IRANSansWeb;
+  font-style  : normal;
+  font-weight : 300;
+  font-display: block;
+  src         : url("../../helpdesk/fonts/IRANSansWeb/eot/IRANSansWeb(FaNum)_Light.eot");
+  src         : url("../../helpdesk/fonts/IRANSansWeb/eot/IRANSansWeb(FaNum)_Bold.eot");
+  src         : url("../../helpdesk/fonts/IRANSansWeb/eot/IRANSansWeb(FaNum)_Light.eot?#iefix") format("embedded-opentype"),
+    url("../../helpdesk/fonts/IRANSansWeb/ttf/IRANSansWeb(FaNum)_Light.ttf") format("truetype");
+}
+
+.homepage-container {
+  margin: 9%;
+}
+.head {
+  font-style : normal;
+  font-weight: 500;
+  font-size  : 20px;
+  line-height: 26px;
+  display    : flex;
+  align-items: center;
+  text-align : center;
+  color      : #000000;
+  text-align : right;
+}
+
+.card {
+  margin-top   : 16px;
+  background   : #ffffff;
+  box-shadow   : 0px 4px 12px rgba(0, 0, 0, 0.12);
+  border-radius: 16px;
+  padding      : 16px;
+}
+
+.cardEmpty {
+  display        : flex;
+  flex-direction : column;
+  align-items    : center;
+  justify-content: space-around;
+  height         : 200px;
+}
+
+.subEmpty {
+  font-style : normal;
+  font-weight: 500 ;
+  font-size  : 16px;
+  line-height: 23px;
+  color      : #000000;
+}
+
+.btn {
+  background   : #5bc767 !important;
+  border-radius: 50px;
+  cursor       : pointer;
+}
+
+.btnText {
+  color      : #ffffff;
+  font-weight: 500;
+  margin-right: 10px;
+  margin-left: 10px;
+  margin-top: 10px;
+  font-size  : 16px;
+}
+
+.cardListBtn {
+  display        : flex;
+  flex-direction : row;
+  justify-content: space-between;
+  align-items    : center;
+  padding-bottom : 16px;
+}
+
+.ticket {
+  display            : flex;
+  flex-direction     : row;
+  justify-content    : space-between;
+  align-items        : center;
+  margin             : 10px;
+  padding            : 15px;
+  border             : 0px solid rgba(144, 143, 143, 0.8) !important;
+  border-bottom-width: 0.4px;
+}
+
+.ticketTitle {
+  font-style : normal;
+  font-weight: 500;
+  font-size  : 16px;
+  line-height: 26px;
+  text-align : center;
+  color      : #000000;
+}
+
+.ticketSub {
+  font-weight: 500;
+  font-size  : 13px;
+  line-height: 21px;
+  color      : #555454;
+}
+
+.closeBtn {
+  background   : rgba(255, 97, 130, 0.19);
+  border       : 1px solid #ff6182;
+  box-sizing   : border-box;
+  border-radius: 90px;
+}
+
+.closeBtnText {
+  font-weight: 500;
+  font-size  : 13px;
+  line-height: 16px;
+  color      : #e02048;
+  opacity    : 0.66;
+  padding    : 5px 16px 5px 16px;
+}
+
+.greenHr {
+  border: 2px dashed #5BC767;
+  margin: 20px;
+}
+
+.seeBtn {
+  background   : rgba(0, 123, 255, 0.15);
+  border-radius: 88px;
+}
+
+.seeBtnText {
+  font-weight: 500;
+  font-size  : 13px;
+  line-height: 16px;
+  color      : #007BFF;
+  opacity    : 0.66;
+  padding    : 5px 16px 5px 16px;
+}
+
+
+/* ************************************************************************** */
+.TicketContainer {
+  display        : flex;
+  flex-direction : column;
+  justify-content: space-between;
+  padding        : 3% 9% ;
+}
+.ticket-header {
+  display        : flex;
+  flex-direction : row;
+  justify-content: space-between;
+  align-items    : center;
+  padding-bottom : 10px;
+}
+
+.title {
+  font-style : normal;
+  font-weight: 500;
+  font-size  : 24px;
+  line-height: 38px;
+  /* height: 100%; */
+  color      : #000000;
+}
+
+.headerHolder {
+  display       : flex;
+  flex-direction: column;
+}
+
+.headerInside {
+  padding-top   : 10px;
+  display       : flex;
+  flex-direction: row;
+  align-items   : center;
+}
+
+.innerText {
+  font-style : normal;
+  font-weight: normal;
+  font-size  : 14px;
+  line-height: 22px;
+  color      : #a9a3a3;
+}
+
+.divider {
+  padding: 0px 10px 15px 10px;
+}
+
+.fileSender {
+  margin-top   : 20px;
+  background   : rgba(91, 199, 103, 0.07);
+  border-radius: 8px;
+  padding      : 8px;
+}
+
+.fileInside {
+  border         : 1px dashed rgba(91, 199, 103, 0.5);
+  border-radius  : 8px;
+  display        : flex;
+  flex-direction : row;
+  justify-content: center;
+  align-items    : center;
+  padding        : 10px;
+}
+
+.fileInsideText:-webkit-file-upload-button {
+  visibility: hidden !important;
+}
+
+.fileInsideText:before {
+  content      : 'بارگزاری عکس';
+  font-family  : "IRANSansWeb";
+  font-style   : normal;
+  font-weight  : 500;
+  font-size    : 11px;
+  line-height  : 17px;
+  color        : #424242;
+  padding-right: 10px;
+}
+
+.submit-btn {
+  margin-top   : 20px;
+  background   : #5bc767;
+  border-radius: 50px;
+  border: 0;
+  cursor: pointer;
+  width: 100%;
+}
+
+.ticket-btnText {
+  font-style    : normal;
+  font-weight   : 500;
+  font-size     : 18px;
+  line-height   : 28px;
+  color         : #ffffff;
+  text-align    : center;
+  padding-top   : 10px;
+}
+
+.textarea {
+  background   : #ffffff;
+  border       : 0.5px solid #c9c9c9;
+  box-sizing   : border-box;
+  border-radius: 8px;
+  min-width    : 100%;
+  max-width    : 100%;
+  font-style   : normal;
+  font-weight  : normal;
+  font-size    : 14px;
+  line-height  : 22px;
+  color        : #a3a3a3;
+  padding      : 16px;
+  margin-top   : 20px;
+}
+
+textarea::-webkit-input-placeholder {
+  color      : #a3a3a3;
+  font-family: "IRANSansWeb";
+}
+
+textarea:-moz-placeholder {
+  /* Firefox 18- */
+  color      : #a3a3a3;
+  font-family: "IRANSansWeb";
+}
+
+textarea::-moz-placeholder {
+  /* Firefox 19+ */
+  color      : #a3a3a3;
+  font-family: "IRANSansWeb";
+}
+
+textarea:-ms-input-placeholder {
+  color      : #a3a3a3;
+  font-family: "IRANSansWeb";
+}
+
+textarea::placeholder {
+  color      : #a3a3a3;
+  font-family: "IRANSansWeb";
+}
+
+.select {
+  position     : relative;
+  min-width : 100%;
+max-width : 100%;
+  padding      : 15px;
+  background   : #ffffff;
+  border       : 0.5px solid #c9c9c9;
+  box-sizing   : border-box;
+  border-radius: 8px;
+  font-family  : "IRANSansWeb";
+  font-style   : normal;
+  font-weight  : normal;
+  font-size    : 14px;
+  line-height  : 22px;
+  color        : #a3a3a3;
+}
+@media (max-width: 600px) {
+.TicketContainer {
+  padding: 10px;
+}
+.headerInside{
+  display: none;
+}
+.title{
+  font-size: 20px;
+}
+.imgHeader{
+width: 150px;
+}
+}

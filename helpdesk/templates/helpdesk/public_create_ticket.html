@@ -11,13 +11,21 @@
 {% endblock %}
 
 {% block helpdesk_body %}
-    <div class="container">
-        <div class="card card-register mx-auto mt-5">
-            <div class="card-header">{% trans "Submit a Ticket" %}</div>
-            <div class="card-body">
-                {% include 'helpdesk/public_create_ticket_base.html' %}
+    <div class="TicketContainer">
+        <div class="ticket-header">
+            <div class="headerHolder">
+                <h1 class="title">اضافه کردن تیکت</h1>
+                <div class="headerInside">
+                    <p class="innerText">داشبورد</p>
+                    <img src="../../static/helpdesk/images/Divider.svg" class="divider" />
+                    <p class="innerText">تیکت ها</p>
+                    <img src="../../static/helpdesk/images/Divider.svg" class="divider" />
+                    <p class="innerText">اضافه کردن تیکت</p>
+                </div>
             </div>
+            <img src="../../static/helpdesk/images/ticketImage.svg" class="imgHeader" />
         </div>
+                {% include 'helpdesk/public_create_ticket_base.html' %}
     </div>
 {% endblock %}
 

@@ -12,31 +12,20 @@
 
 </head>
 
-<body id="bg-dark" style="text-align: right;">
-
-    {% include "helpdesk/navigation-header.html" %}
+<body id="bg-dark" style="text-align: right;font-family: IRANSansWeb ;">
 
     <div id="wrapper">
-        {% include "helpdesk/navigation-sidebar.html" %}
 
         <div id="content-wrapper">
 
-            <div style="text-align: right;" class="container-fluid">
-
-                <!-- Breadcrumbs-->
-                <!-- <ol class="breadcrumb">
-                    {% block helpdesk_breadcrumb %}{% endblock %}
-                </ol> -->
+            <div style="text-align: right;">
 
                 {% block helpdesk_body %}{% endblock %}
 
             </div>
             <!-- /.container-fluid -->
-
-            {% include "helpdesk/attribution.html" %}
         </div>
         <!-- /.content-wrapper -->
-
     </div>
     <!-- /#wrapper -->
 
