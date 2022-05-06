@@ -3,13 +3,6 @@
 
 {% block helpdesk_title %}{% trans "Create Ticket" %}{% endblock %}
 
-{% block helpdesk_breadcrumb %}
-    <li class="breadcrumb-item">
-        <a href="{% url 'helpdesk:home' %}">Public</a>
-    </li>
-    <li class="breadcrumb-item active">Create Ticket</li>
-{% endblock %}
-
 {% block helpdesk_body %}
     <div class="TicketContainer">
         <div class="ticket-header">
@@ -17,8 +10,6 @@
                 <h1 class="title">اضافه کردن تیکت</h1>
                 <div class="headerInside">
                     <p class="innerText">داشبورد</p>
-                    <img src="../../static/helpdesk/images/Divider.svg" class="divider" />
-                    <p class="innerText">تیکت ها</p>
                     <img src="../../static/helpdesk/images/Divider.svg" class="divider" />
                     <p class="innerText">اضافه کردن تیکت</p>
                 </div>
