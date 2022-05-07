@@ -6,9 +6,21 @@
     {% if form.errors %}
     {% include 'helpdesk/include/alert_form_errors.html' %}
     {% endif %}
-    <form role="form" method='post' enctype='multipart/form-data'>
+    <form role="form" method='post' enctype='multipart/form-data' class="form">
         {% csrf_token %}
-        {{ form|bootstrap4form }}
+        {{ form.queue }}
+        {{ form.title }}
+        {{ form.body }}
+        {{ form.priority }}
+        <div class="fileSender">
+            <div class="fileInside">
+                <img src="../../static/helpdesk/images/Paperclip.svg" />
+                {{ form.attachment }}
+            </div>
+        </div>
+        
+        {{ form.submitter_email }}
+        <!-- {{ form|bootstrap4form }} -->
         <button  type="submit" class="submit-btn">
             <p class="ticket-btnText">ثبت نظر</p>
         </button>

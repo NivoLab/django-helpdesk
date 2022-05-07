@@ -16,7 +16,7 @@
 .head {
   font-style : normal;
   font-weight: 500;
-  font-size  : 20px;
+  font-size  : 16px;
   line-height: 26px;
   display    : flex;
   align-items: center;
@@ -24,11 +24,10 @@
   color      : #000000;
   text-align : right;
 }
-
 .card {
   margin-top   : 16px;
   background   : #ffffff;
-  box-shadow   : 0px 4px 12px rgba(0, 0, 0, 0.12);
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.12);
   border-radius: 16px;
   padding      : 16px;
 }
@@ -44,8 +43,8 @@
 .subEmpty {
   font-style : normal;
   font-weight: 500;
-  font-size  : 16px;
-  line-height: 23px;
+font-size  : 14px;
+line-height: 23px;
   color      : #000000;
 }
 
@@ -53,15 +52,17 @@
   background   : #5bc767 !important;
   border-radius: 50px;
   cursor       : pointer;
+  
 }
 
 .btnText {
   color       : #ffffff;
-  font-weight : 500;
+  font-weight: 500;
+font-size  : 16px;
+line-height: 20px;
   margin-right: 10px;
   margin-left : 10px;
   margin-top  : 10px;
-  font-size   : 16px;
 }
 
 .cardListBtn {
@@ -144,6 +145,7 @@
 }
 
 .ticket-header {
+  position: relative;
   display        : flex;
   flex-direction : row;
   justify-content: space-between;
@@ -153,9 +155,9 @@
 
 .title {
   font-style : normal;
-  font-weight: 500;
-  font-size  : 24px;
-  line-height: 38px;
+font-weight: 500;
+font-size  : 24px;
+line-height: 38px;
   /* height  : 100%; */
   color      : #000000;
 }
@@ -196,11 +198,11 @@
   border-radius  : 8px;
   display        : flex;
   flex-direction : row;
+  align-content: center;
   justify-content: center;
   align-items    : center;
   padding        : 10px;
 }
-
 .fileInsideText:-webkit-file-upload-button {
   visibility: hidden !important;
 }
@@ -280,6 +282,7 @@ textarea::placeholder {
 
 .form-control {
   position     : relative;
+  margin : 20px 0px;
   min-width    : 100%;
   max-width    : 100%;
   padding      : 15px;
@@ -295,6 +298,7 @@ textarea::placeholder {
   line-height  : 22px;
   color        : #a3a3a3;
 }
+
 .textHolder {
   background   : rgba(240, 240, 240, 0.35);
   border       : 0.5px solid #c9c9c9;
@@ -307,22 +311,25 @@ textarea::placeholder {
   line-height  : 22px;
   color        : #000000;
   margin-top   : 10px;
-  
+
 }
+
 .holder {
-  display: flex;
-  flex-flow: row;
-  width: 100%;
+  display        : flex;
+  flex-flow      : row;
+  width          : 100%;
   justify-content: space-between;
 }
-.holder > div {
+
+.holder>div {
   width: 49%;
-  
+
 }
-.status {
-  /* color: #5bc767; */
-  /* font-weight: bold; */
-}
+
+/* .status { */
+/* color: #5bc767; */
+/* font-weight: bold; */
+/* } */
 .ticketSend {
   margin       : 30px;
   background   : #ffffff;
@@ -369,17 +376,18 @@ textarea::placeholder {
   width        : 70%;
   padding      : 16px;
 }
-.ticketInfoHoler >p {
+
+.ticketInfoHoler>p {
   margin: 8px;
 }
+
 @media (max-width: 600px) {
   .TicketContainer {
     padding: 10px;
   }
-
-  .headerInside {
-    /* display: none; */
-  }
+  /* .headerInside { */
+  /* display: none; */
+  /* } */
 
   .title {
     font-size: 20px;
