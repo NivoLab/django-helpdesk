@@ -6,7 +6,7 @@
     {% if form.errors %}
     {% include 'helpdesk/include/alert_form_errors.html' %}
     {% endif %}
-    <form role="form" method='post' enctype='multipart/form-data' class="form">
+    <form role="form" method='post' enctype='multipart/form-data'>
         {% csrf_token %}
         {{ form.queue }}
         {{ form.title }}
@@ -14,7 +14,7 @@
         {{ form.priority }}
         <div class="fileSender">
             <div class="fileInside">
-                <img src="../../static/helpdesk/images/Paperclip.svg" />
+                <img src="../../static/helpdesk/images/Paperclip.svg" /><p>آپلود عکس</p>
                 {{ form.attachment }}
             </div>
         </div>
