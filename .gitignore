@@ -12,6 +12,8 @@ docs/doctrees/*
 .directory
 *.swp
 .idea
+env/*
+.vscode/*
 
 # ignore demo attachments that user might have added
 helpdesk/attachments/
