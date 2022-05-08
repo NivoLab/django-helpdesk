@@ -1,0 +1,27 @@
+{% extends "helpdesk/public_base.html" %}{% load i18n humanize %}
+{% load static %}
+{% block helpdesk_title %}{% trans "Ticket List" %}{% endblock %}
+
+{% block helpdesk_body %}
+
+<div>
+    {% if result %}
+    {% for row in result %}
+    <p>
+        <span>
+            {{row.ticket.id}}
+        </span>
+        <span>
+            {{row.ticket.description}}
+        </span>
+        <span>
+            {{row.queue}}
+        </span>
+    </p>    
+    {% endfor %}
+    {% else %}
+    <p>There is no ticket</p>
+    {% endif %}
+</div>
+
+{% endblock %}

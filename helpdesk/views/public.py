@@ -6,14 +6,16 @@ django-helpdesk - A Django powered ticket tracker for small enterprise.
 views/public.py - All public facing views, eg non-staff (no authentication
                   required) views.
 """
+import json
 import logging
 from importlib import import_module
+from re import template
 
 from django.core.exceptions import (
     ObjectDoesNotExist, PermissionDenied, ImproperlyConfigured,
 )
 from django.urls import reverse
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, JsonResponse
 from django.shortcuts import render
 from django.utils.http import urlquote
 from django.utils.translation import ugettext as _
@@ -22,13 +24,14 @@ from django.views.decorators.clickjacking import xframe_options_exempt
 from django.views.decorators.csrf import csrf_exempt
 from django.views.generic.base import TemplateView
 from django.views.generic.edit import FormView
+from django.contrib.auth import authenticate, login
 
 from helpdesk import settings as helpdesk_settings
 from helpdesk.decorators import protect_view, is_helpdesk_staff
 import helpdesk.views.staff as staff
 import helpdesk.views.abstract_views as abstract_views
 from helpdesk.lib import text_is_spam
-from helpdesk.models import Ticket, Queue, UserSettings
+from helpdesk.models import KBItem, Ticket, Queue, UserSettings
 from helpdesk.user import huser_from_request
 
 logger = logging.getLogger(__name__)
@@ -236,3 +239,29 @@ def change_language(request):
         return_to = request.GET['return_to']
 
     return render(request, 'helpdesk/public_change_language.html', {'next': return_to})
+
+
+def email_ticket_list(request):
+    template_url = 'helpdesk/public_ticket_list.html'
+
+    email = request.GET.get('email', None)
+    if email is None:
+        return JsonResponse({'error': True, 'message': 'email is none'})
+    
+    tickets = Ticket.objects.filter(submitter_email=email)
+
+    from helpdesk.serializers import TicketSerializer
+    tk=[]
+    
+    for ticket in tickets:
+        tk.append({
+            'ticket': TicketSerializer(ticket).data,
+            'queue': ticket.queue.title
+        })
+
+    print(tk)
+    # return JsonResponse({'error': True, 'result': tk})
+    return render(request, template_url, {
+        'result': tk,
+    })
+
