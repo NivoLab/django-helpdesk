@@ -1,3 +1,5 @@
+import datetime
+from ssl import create_default_context
 from rest_framework import serializers
 from django.contrib.humanize.templatetags import humanize
 from rest_framework.exceptions import ValidationError
@@ -113,9 +115,23 @@ class TicketSerializer(serializers.ModelSerializer):
 
 # * added by sia
 class TicketListSerializer(serializers.ModelSerializer):
+    time_elapsed = serializers.SerializerMethodField()
+    # time_spent_formated = serializers.SerializerMethodField()
+    
     class Meta:
         model = Ticket
         fields = (
             'id', 'queue', 'title', 'description', 'resolution', 'submitter_email', 'assigned_to', 'status', 'on_hold',
-            'priority', 'due_date', 'merged_to', 'created', 'modified'
+            'priority', 'due_date', 'merged_to', 'created', 'modified', 'time_elapsed', 'secret_key'
         )
+    
+    def get_time_elapsed(self, instance):
+        """Return back total time elapsed from when the ticket creates"""
+
+        now = datetime.datetime.now()
+        created = instance.created.replace(tzinfo=None)
+        elapse_datetime = now - created
+        seconds_in_day = 24 * 60 * 60
+        time_elapse = divmod(elapse_datetime.days * seconds_in_day + elapse_datetime.seconds, 60)[0]
+
+        return time_elapse
