@@ -28,6 +28,7 @@ from django.contrib.auth import authenticate, login
 
 from helpdesk import settings as helpdesk_settings
 from helpdesk.decorators import protect_view, is_helpdesk_staff
+from helpdesk.serializers import TicketListSerializer
 import helpdesk.views.staff as staff
 import helpdesk.views.abstract_views as abstract_views
 from helpdesk.lib import text_is_spam
@@ -255,7 +256,7 @@ def email_ticket_list(request):
     
     for ticket in tickets:
         tk.append({
-            'ticket': TicketSerializer(ticket).data,
+            'ticket': TicketListSerializer(ticket).data,
             'queue': ticket.queue.title
         })
 
@@ -264,4 +265,3 @@ def email_ticket_list(request):
     return render(request, template_url, {
         'result': tk,
     })
-

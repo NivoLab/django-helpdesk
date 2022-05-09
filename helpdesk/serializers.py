@@ -110,3 +110,12 @@ class TicketSerializer(serializers.ModelSerializer):
         instance = super().update(instance, validated_data)
         instance.save_custom_field_values(validated_data)
         return instance
+
+# * added by sia
+class TicketListSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Ticket
+        fields = (
+            'id', 'queue', 'title', 'description', 'resolution', 'submitter_email', 'assigned_to', 'status', 'on_hold',
+            'priority', 'due_date', 'merged_to', 'created', 'modified'
+        )
