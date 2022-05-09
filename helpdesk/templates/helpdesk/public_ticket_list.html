@@ -6,22 +6,62 @@
 
 <div>
     {% if result %}
+    <div class="container listContainer">
+        <div class="cardListBtn">
+            <h1 class="head">تیکت ها</h1>
+            <a class="btn" href="{% url 'helpdesk:submit' %}">
+                <img src="../../static/helpdesk/images/plus-circle.svg" alt="inbox" /><span class="btnText">افزودن تیکت جدید
+                    </apan>
+            </a>
+        </div>
+        <div class="card">
+            <div class="cardList">
+                <table  style="width: 95%;margin: 20px;">
+                    <tr  style="border-bottom: 4px dashed #5BC767;">
+                        <th style="padding: 40px 0px;">شماره تیکت</th>
+                        <th>موضوع</th>
+                        <th>تاریخ ایجاد</th>
+                        <th>وضعیت تیکت</th>
+                        <th>مشاهده</th>
+                    </tr>
     {% for row in result %}
-    <p>
-        <span>
-            {{row.ticket.id}}
-        </span>
-        <span>
-            {{row.ticket.description}}
-        </span>
-        <span>
-            {{row.queue}}
-        </span>
-    </p>    
-    {% endfor %}
+    <tr >
+        <td style="padding: 30px 0px;">{{ forloop.counter }} {{ row.from_location }} {{ row.to_location }}</td>
+        <td style="width: 25%;">{{row.ticket.title}}</td>
+        <td>۲ ساعت پیش</td>
+        <td>{% if row.ticket.status == 2 or row.ticket.status == 3 %}
+            <div class="answeredBtn"><img src="../../static/helpdesk/images/check.svg" alt="answered" />
+                <span class="answeredBtnText">پاسخ داده شده</apan>
+                </div>
+                {% endif %}{% if row.ticket.status == 4 or row.ticket.status == 5 %}
+                <div class="closeBtn"><img src="../../static/helpdesk/images/x-circle.svg" alt="close" />
+                    <span class="closeBtnText">بسته شده</apan>
+                </div>
+                {% endif %}
+                {% if row.ticket.status == 1 %}
+                <div class="openBtn"><img src="../../static/helpdesk/images/file-minus.svg" alt="open" />
+                    <span class="openBtnText">در دست بررسی</apan>
+                </div>
+                {% endif %}</td>
+        <td><button class="showBtn"><img src="../../static/helpdesk/images/eye.svg" alt="show" /><span class="showText">مشاهده
+            </apan></button></td>
+    </tr>
+    {% endfor %}</table></div>
+    </div>
     {% else %}
-    <p>There is no ticket</p>
+    <div class="homepage-container">
+        <h1 class="head">تیکت ها</h1>
+        <div class="card">
+            <div class="cardEmpty">
+                <img src="../../static/helpdesk/images/inbox.svg" alt="inbox" />
+                <h3 class="subEmpty">تیکتی وجود ندارد</h3>
+                <a class="btn" href="{% url 'helpdesk:submit' %}">
+                    <img src="../../static/helpdesk/images/plus.svg" alt="inbox" /><span class="btnText">افزودن تیکت جدید
+                        </apan>
+                </a>
+            </div>
+        </div>
+    </div>
     {% endif %}
-</div>
 
 {% endblock %}
