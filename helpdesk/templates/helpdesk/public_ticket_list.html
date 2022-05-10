@@ -28,7 +28,17 @@
     <tr >
         <td style="padding: 30px 0px;">{{ forloop.counter }} {{ row.from_location }} {{ row.to_location }}</td>
         <td style="width: 25%;">{{row.ticket.title}}</td>
-        <td>.</td>
+        <td><script>function docWrite(variable) {
+                document.write(`${SplitTime(variable).Days} روز و ${SplitTime(variable).Hours} ساعت پیش`);
+            };
+            function SplitTime(numberOfHours) {
+                var Days = Math.floor(Number(numberOfHours) / 24);
+                var Remainder = Number(numberOfHours) % 24;
+                var Hours = Math.floor(Remainder);
+                var Minutes = Math.floor(60 * (Remainder - Hours));
+                return ({ "Days": Days, "Hours": Hours, "Minutes": Minutes })
+            }; 
+            docWrite("{{ row.ticket.time_elapsed }}")</script></td>
         <td>{% if row.ticket.status == 2 or row.ticket.status == 3 %}
             <div class="answeredBtn"><img src="../../static/helpdesk/images/check.svg" alt="answered" />
                 <span class="answeredBtnText">پاسخ داده شده</apan>
@@ -43,7 +53,7 @@
                     <span class="openBtnText">در دست بررسی</apan>
                 </div>
                 {% endif %}</td>
-        <td><a class="showBtn" href="/view/?ticket={{ row.ticket.id }}&email={{ row.ticket.submitter_email }}&key=d5707cb8-e309-41ec-a7a5-eb5e9f1eab67"><img src="../../static/helpdesk/images/eye.svg" alt="show" /><span class="showText">مشاهده
+        <td><a class="showBtn" href="/view/?ticket={{ row.ticket.id }}&email={{ row.ticket.submitter_email }}&key={{ row.ticket.secret_key }}"><img src="../../static/helpdesk/images/eye.svg" alt="show" /><span class="showText">مشاهده
             </apan></a></td>
     </tr>
     {% endfor %}</table></div>
@@ -64,12 +74,6 @@
     </div>
     {% endif %}
 <script >
-function SplitTime(numberOfHours) {
-        var Days = Math.floor(numberOfHours / 24);
-        var Remainder = numberOfHours % 24;
-        var Hours = Math.floor(Remainder);
-        var Minutes = Math.floor(60 * (Remainder - Hours));
-        return ({ "Days": Days, "Hours": Hours, "Minutes": Minutes })
-    }
+
 </script>
 {% endblock %}
