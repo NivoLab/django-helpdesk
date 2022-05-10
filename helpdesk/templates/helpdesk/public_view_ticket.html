@@ -31,7 +31,7 @@
         <input type="hidden" name="key" value="{{ key }}" />
         <input type="hidden" name="mail" value="{{ mail }}" />
       
-              <textarea rows="8" cols="70" required name="comment" id="commentBox"></textarea>
+              <textarea placeholder="متن پیام خود را وارد کنید " class="des" rows="6" cols="70" required name="comment" id="commentBox"></textarea>
             {% if not ticket.can_be_resolved %}
             <dd>
               {% trans "This ticket cannot be resolved or closed until the tickets
@@ -45,11 +45,23 @@
             <input type="file" name="attachment" id="file0">
           </div>
           </div>
-      
-        <button class="btn btn-success btn-lg" type="submit">
-          {% trans "Update This Ticket" %}
-        </button>
-      
+        <div class="btns">
+      <button type="submit" class="btn">
+        <img src="../../static/helpdesk/images/fluent_arrow-reply-48-regular.svg" alt="reply" /><span class="btnText">ارسال پاسخ
+          </apan>
+      </button>
+      <button type="button" class="backBtn" onclick="document.getElementById('close').style.display = 'flex';" >
+        <img src="../../static/helpdesk/images/x-circle-green.svg" alt="reply" /><span class="backBtnText">بستن
+          </apan>
+      </button></div>
+      <div id="ok" class="closePart"><img width="70" height="70" src="../../static/helpdesk/images/Frame_12978.svg" alt="ok" />
+        <p>تیکت شما با موفقیت ارسال گردید</p><button class="okButton" onclick="history.back()" type="button">
+        تایید
+        </button></div>
+      <div id="close" class="closePart"><img width="70" height="70" src="../../static/helpdesk/images/Frame_12889.svg" alt="close" />
+        <p> آیا از بستن این تیکت اطمینان دارید؟</p><button class="okButton" onclick="history.back()" type="button">
+        تایید
+        </button></div>
         {% csrf_token %}
       </form>
     <div class="chat">
@@ -70,7 +82,7 @@
             </div>
             <div class="ticketInfoHoler">
               <img src="../../static/helpdesk/images/time.svg" alt="Time" />
-              <p>{{ followup.date|naturaltime }}</p>
+              <p>{{ followup.date }}</p>
             </div>
           </div>
         </div>
@@ -86,7 +98,7 @@
             </div>
             <div class="ticketInfoHoler">
               <img src="../../static/helpdesk/images/time.svg" alt="Time" />
-              <p>{{ followup.date|naturaltime }}</p>
+              <p>{{ followup.date }}</p>
             </div>
           </div>
         </div>
@@ -94,5 +106,8 @@
       {% endfor %} {% endif %}
     </div>
   </div>
-
+<script>$('form').submit(function (e) {
+    $('#ok').hide();
+    e.preventDefault();     
+  });</script>
 {% endblock %}

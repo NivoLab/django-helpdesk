@@ -55,6 +55,14 @@
   padding      : 16px;
 }
 
+textarea {
+  background   : #FFFFFF;
+  border       : 0.5px solid #C9C9C9;
+  border-radius: 8px;
+  padding      : 10px;
+  width        : 100%;
+}
+
 .cardEmpty {
   display        : flex;
   flex-direction : column;
@@ -124,62 +132,112 @@
 }
 
 .answeredBtn {
-  background   :  rgba(91, 199, 103, 0.12);
+  background      : rgba(91, 199, 103, 0.12);
   /* border       : 1px solid #5BC767; */
-  border: 0px;
-  box-sizing   : border-box;
-  font-size: 14px;
-  width: fit-content;
-  padding: 2px 10px;
-  border-radius: 90px;
+  border          : 0px;
+  box-sizing      : border-box;
+  font-size       : 14px;
+  width           : fit-content;
+  padding         : 2px 10px;
+  border-radius   : 90px;
 }
 
 .answeredBtnText {
   font-weight: 700;
-font-size  : 14px;
-line-height: 23px;
+  font-size  : 14px;
+  line-height: 23px;
   color      : #5BC767;
   opacity    : 0.66;
   padding    : 5px 5px;
 }
+
+.closePart {
+  width            : 270px;
+  height           : 270px;
+  display          : flex;
+  position         : fixed;
+  top              : 50%;
+  left             : 50%;
+  background-color : white;
+  -webkit-transform: translate(-50%, -50%);
+  transform        : translate(-50%, -50%);
+  align-items      : center;
+  flex-flow        : column;
+  justify-content  : space-evenly;
+  border           : 1px solid rgb(209, 209, 209);
+  border-radius    : 10px;
+}
+
+#close {
+  display: none;
+}
+#ok {
+  display: none;
+}
+
+.backBtn {
+  border          : 1px solid #5BC767;
+  border-radius   : 60px;
+  background-color: white;
+  padding         : 8px 40px;
+  margin          : 0px 10px;
+}
+
+.btns {
+  margin-top     : 20px;
+  display        : flex;
+  align-items    : center;
+  justify-content: center;
+}
+
+.backBtnText {
+  color      : #5BC767;
+  padding    : 5px 5px;
+  font-weight: 700;
+  font-size  : 14px;
+  line-height: 23px;
+}
+
 .openBtn {
-  background   :  rgba(0, 123, 255, 0.1);
+  background      : rgba(0, 123, 255, 0.1);
   /* border       : 1px solid #5BC767; */
-  border: 0px;
-  box-sizing   : border-box;
-  font-size: 14px;
-  width: fit-content;
-  padding: 2px 10px;
-  border-radius: 90px;
+  border          : 0px;
+  box-sizing      : border-box;
+  font-size       : 14px;
+  width           : fit-content;
+  padding         : 2px 10px;
+  border-radius   : 90px;
 }
 
 .openBtnText {
   font-weight: 700;
-font-size  : 14px;
-line-height: 23px;
+  font-size  : 14px;
+  line-height: 23px;
   color      : #007BFF;
   opacity    : 0.66;
   padding    : 5px 5px;
 }
+
 .closeBtn {
-  background   :  rgba(255, 97, 130, 0.19);
+  background      : rgba(255, 97, 130, 0.19);
   /* border       : 1px solid #5BC767; */
-  border: 0px;
-  box-sizing   : border-box;
-  font-size: 14px;
-  width: fit-content;
-  padding: 2px 10px;
-  border-radius: 90px;
+  border          : 0px;
+  box-sizing      : border-box;
+  font-size       : 14px;
+  width           : fit-content;
+  padding         : 2px 10px;
+  border-radius   : 90px;
 }
 
 .closeBtnText {
   font-weight: 700;
-font-size  : 14px;
-line-height: 23px;
+  font-size  : 14px;
+  line-height: 23px;
   color      : #E02048;
   opacity    : 0.66;
   padding    : 5px 5px;
 }
+
 .seeBtn {
   background   : rgba(0, 123, 255, 0.15);
   border-radius: 88px;
@@ -280,7 +338,15 @@ line-height: 23px;
 .form-control-file:-webkit-file-upload-button {
   visibility: hidden !important;
 }
-
+.okButton{
+  width : 60px;
+height: 30px;
+border: 0;
+padding: 0;
+color: white;
+background: #5BC767;
+border-radius: 50px;
+}
 button,
 input,
 optgroup,
