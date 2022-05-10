@@ -134,6 +134,6 @@ class TicketListSerializer(serializers.ModelSerializer):
         seconds_in_day = 24 * 60 * 60
         time_elapse = divmod(elapse_datetime.days * seconds_in_day + elapse_datetime.seconds, 60)[0]
 
-        time_elapse_in_hour = str("{h}:{m}".format(h=int(time_elapse/60), m=int(time_elapse%60)))
+        # time_elapse_in_hour = str("{h}:{m}".format(h=int(time_elapse/60), m=int(time_elapse%60)))
 
-        return time_elapse_in_hour
+        return time_elapse
