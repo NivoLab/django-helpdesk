@@ -13,7 +13,7 @@ docs/doctrees/*
 *.swp
 .idea
 env/*
-.vscode/*
+demo/.vscode/*
 
 # ignore demo attachments that user might have added
 helpdesk/attachments/
