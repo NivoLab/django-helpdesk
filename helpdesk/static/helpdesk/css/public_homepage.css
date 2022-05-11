@@ -524,8 +524,73 @@ textarea::placeholder {
 .ticketInfoHoler>p {
   margin: 8px;
 }
+.table{
+  margin: 20px;
+width :95%;
+}
 
+.table td,
+.table th {
+  padding       : 1.75rem 0rem;
+  vertical-align: top;
+  border-top    :0px;
+}
 @media (max-width: 600px) {
+  .table tr {
+  border: 1px solid #ECECEC;
+border-radius: 8px;
+  padding: 5px;
+  margin-bottom: 10px;
+}
+  .table {
+  margin: 0px;
+  width : 100%;
+}
+.table td,
+.table th {
+  padding       : 8px 0rem;
+  font-size: 15px;
+  margin-bottom: 5px;
+  vertical-align: top;
+  border-top    : 0px;
+}
+      .table thead {
+    display: none;
+  }
+.card{
+  padding: 0;
+  background-color: transparent;
+  border: 0;
+  box-shadow : 0px 0px 0px rgba(0, 0, 0, 0.12);
+}
+  .table,
+  .table tbody,
+  .table tr,
+  .table td {
+    display: block;
+    /* width  : 95%; */
+  }
+
+  .table td {
+    padding-right: 50%;
+    text-align  : center;
+    position    : relative;
+    background: #FBFBFB;
+border-radius: 90px;
+  }
+
+  .table td::before {
+    content     : attr(data-label);
+    position    : absolute;
+    right        : 0;
+    width       : 40%;
+    margin-right: 10px;
+    border-left: 1px solid rgba(196, 196, 196, 0.7);
+    /* padding-left: 15px; */
+    font-size   : 15px;
+    font-weight : bold;
+    text-align  : right;
+  }
   .TicketContainer {
     padding: 10px;
   }
