@@ -107,6 +107,9 @@ class BaseCreateTicketView(abstract_views.AbstractCreateTicketMixin, FormView):
 
     def form_valid(self, form):
         request = self.request
+
+        if not form.is_valid():
+            print(form.errors)
         if text_is_spam(form.cleaned_data['body'], request):
             # This submission is spam. Let's not save it.
             return render(request, template_name='helpdesk/public_spam.html')

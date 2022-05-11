@@ -33,7 +33,7 @@ from rest_framework import serializers
 from helpdesk import settings as helpdesk_settings
 from .lib import convert_value
 
-from .validators import validate_file_extension
+from .validators import validate_file_extension, validate_file_size
 
 from .templated_email import send_templated_mail
 
@@ -1061,7 +1061,7 @@ class Attachment(models.Model):
         _('File'),
         upload_to=attachment_path,
         max_length=1000,
-        validators=[validate_file_extension]
+        validators=[validate_file_extension, validate_file_size]
     )
 
     filename = models.CharField(

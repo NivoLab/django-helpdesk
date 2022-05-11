@@ -218,6 +218,39 @@ class AbstractTicketForm(CustomFieldMixin, forms.Form):
                     choices=[(kbi.pk, kbi.title) for kbi in KBItem.objects.filter(category=kbcategory.pk, enabled=True)],
                 )
 
+    # * added by sia
+    def clean_attachment(self, *args, **kwargs):
+        import os
+        
+        my_file = self.cleaned_data.get("attachment")
+        if not my_file:
+            return my_file
+        # extentions validation
+        ext = os.path.splitext(my_file.name)[1]  # [0] returns path+filename
+        valid_extensions = ['.txt', '.pdf', '.doc', '.docx', '.odt', '.jpg', '.png', '.eml','.mp4', '.gif', '.mkv']
+
+        if not ext.lower() in valid_extensions:
+            raise forms.ValidationError('Unsupported file extension.')
+        
+        # file size validation
+        # file size list (megabyte to byte)
+        size = {
+            '5MB': 5242880,
+            '10MB': 10485760,
+            '20MB': 20971520,
+            '50MB': 52428800,
+            '100MB': 104857600,
+            '250MB': 262144000,
+            '500MB': 524288000,
+        }
+
+        filesize= my_file.size
+        accepted_size = size['50MB']
+        if filesize > accepted_size:
+            raise ValidationError("The maximum file size that can be uploaded is {} MB".format(int(accepted_size/1024/1024)))
+
+        return my_file
+
     def _add_form_custom_fields(self, staff_only_filter=None):
         if staff_only_filter is None:
             queryset = CustomField.objects.all()
