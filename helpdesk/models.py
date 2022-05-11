@@ -635,7 +635,12 @@ class Ticket(models.Model):
         returns the set of email addresses the notification was delivered to.
 
         """
+
+        # * added by sia
+        # * * we dont want this function to execute
         recipients = set()
+        return recipients
+
 
         if dont_send_to is not None:
             recipients.update(dont_send_to)
