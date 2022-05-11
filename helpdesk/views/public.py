@@ -246,6 +246,8 @@ def change_language(request):
 
 
 def email_ticket_list(request):
+    """send list of users tickets"""
+
     template_url = 'helpdesk/public_ticket_list.html'
 
     email = request.GET.get('email', None)
