@@ -175,10 +175,15 @@ urlpatterns += [
         protect_view(public.Homepage.as_view()),
         name='home'),
 
-    # * sia added url
+    # * added by sia
     url('tickets/list',
         public.email_ticket_list,
         name='user_ticket_list'),
+
+    # * added by sia
+    url('tickets/test_data',
+        public.test_data,
+        name='test_data'),
 
     url(r'^tickets/submit/$',
         public.create_ticket,

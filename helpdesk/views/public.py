@@ -268,3 +268,27 @@ def email_ticket_list(request):
     return render(request, template_url, {
         'result': tk,
     })
+
+
+def test_data(request):
+    try:
+        q = Queue(
+            slug='a',
+            title='a',
+            allow_public_submission=True
+        )
+        q.save()
+
+        t = Ticket(
+            title = 'aa',
+            description='aa',
+            queue=q,
+            created=datetime.now(),
+            submitter_email='09120535348@gmail.com',
+        )
+        t.save()
+        
+        return JsonResponse({'message': 'successful'}, status=200)
+    except Exception as e:
+        print(e.__str__)
+        return JsonResponse({'message': 'failed'}, status=400)
