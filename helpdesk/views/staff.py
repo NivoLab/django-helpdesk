@@ -7,6 +7,7 @@ views/staff.py - The bulk of the application - provides most business logic and
                  renders all staff-facing views.
 """
 from copy import deepcopy
+from hashlib import new
 import json
 
 from django.conf import settings
@@ -480,17 +481,24 @@ def update_ticket(request, ticket_id, public=False):
         key = request.POST.get('key')
         email = request.POST.get('mail')
 
-        if key and email:
+        print("{} ------ {}".format(email, key))
+
+        # if key and email:
+        if email:
             ticket = Ticket.objects.get(
                 id=ticket_id,
                 submitter_email__iexact=email,
-                secret_key__iexact=key
+                # secret_key__iexact=key
             )
 
+        # * added by sia
+        # if not ticket:
+        #     return HttpResponseRedirect(
+        #         '%s?next=%s' % (reverse('helpdesk:login'), request.path)
+        #     )
         if not ticket:
-            return HttpResponseRedirect(
-                '%s?next=%s' % (reverse('helpdesk:login'), request.path)
-            )
+            return JsonResponse({'message': 'ticket is null'}, status=400)
+        
 
     if not ticket:
         ticket = get_object_or_404(Ticket, id=ticket_id)
@@ -536,19 +544,45 @@ def update_ticket(request, ticket_id, public=False):
             else:
                 due_date = timezone.now()
             due_date = due_date.replace(due_date_year, due_date_month, due_date_day)
-
-    no_changes = all([
+    
+    changes_list = [
         not request.FILES,
         not comment,
         new_status == ticket.status,
-        title == ticket.title,
+        # title == ticket.title,
         priority == int(ticket.priority),
         due_date == ticket.due_date,
         (owner == -1) or (not owner and not ticket.assigned_to) or
         (owner and User.objects.get(id=owner) == ticket.assigned_to),
-    ])
+    ]
+
+    new_list = [
+        new_status,
+        title,
+        priority,
+        due_date,
+        owner,
+    ]
+
+    old_list = [
+        ticket.status,
+        ticket.title,
+        int(ticket.priority),
+        ticket.due_date,
+        ticket.assigned_to,
+    ]
+
+    no_changes = all(changes_list)
+
+    # * added by sia
+    # print('changes : \n', changes_list)
+    # print('new list : \n', new_list)
+    # print('old list : \n', old_list)
+    # print('no changes flag : \n', no_changes)
     if no_changes:
-        return return_to_ticket(request.user, helpdesk_settings, ticket)
+        # return return_to_ticket(request.user, helpdesk_settings, ticket)
+        return JsonResponse({'message': 'no change'}, status=204)
+
 
     # We need to allow the 'ticket' and 'queue' contexts to be applied to the
     # comment.
@@ -740,12 +774,18 @@ def update_ticket(request, ticket_id, public=False):
     ticket.save()
 
     # auto subscribe user if enabled
-    if helpdesk_settings.HELPDESK_AUTO_SUBSCRIBE_ON_TICKET_RESPONSE and request.user.is_authenticated:
-        ticketcc_string, SHOW_SUBSCRIBE = return_ticketccstring_and_show_subscribe(request.user, ticket)
-        if SHOW_SUBSCRIBE:
-            subscribe_staff_member_to_ticket(ticket, request.user)
+    # if helpdesk_settings.HELPDESK_AUTO_SUBSCRIBE_ON_TICKET_RESPONSE and request.user.is_authenticated:
+    #     ticketcc_string, SHOW_SUBSCRIBE = return_ticketccstring_and_show_subscribe(request.user, ticket)
+    #     if SHOW_SUBSCRIBE:
+    #         subscribe_staff_member_to_ticket(ticket, request.user)
 
-    return return_to_ticket(request.user, helpdesk_settings, ticket)
+    # * added by sia
+    if is_helpdesk_staff(request.user):
+        redirect_url = reverse('helpdesk:list')
+        return HttpResponseRedirect(redirect_url)
+    # return return_to_ticket(request.user, helpdesk_settings, ticket)
+    print("1 view ticket test for reply")
+    return JsonResponse({'message': 'successfully updated'}, status=200)
 
 
 def return_to_ticket(user, helpdesk_settings, ticket):
