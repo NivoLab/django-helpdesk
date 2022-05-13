@@ -20,8 +20,8 @@
                 <table class="table">
                     <thead>
                         <tr style="border-bottom: 4px dashed #5BC767;">
-                            <th scope="col" >شماره تیکت</th>
-                            <th scope="col">موضوع</th>
+                            <th scope="col"  class="number">شماره تیکت</th>
+                            <th scope="col"  class="subject">موضوع</th>
                             <th scope="col">تاریخ ایجاد</th>
                             <th scope="col">وضعیت تیکت</th>
                             <th scope="col">مشاهده</th>
@@ -30,8 +30,8 @@
                     <tbody>
                         {% for row in result reversed %}
                         <tr>
-                            <td data-label="شماره تیکت">{{ forloop.counter }} {{ row.from_location }} {{row.to_location }}</td>
-                            <td data-label="موضوع">{{row.ticket.title}}</td>
+                            <td data-label="شماره تیکت" class="number">{{ forloop.counter }} {{ row.from_location }} {{row.to_location }}</td>
+                            <td data-label="موضوع" class="subject"><p > {{row.ticket.title}}</p></td>
                             <td data-label="تاریخ ایجاد">
                                 <script>function docWrite(variable) {
                                         var text = ""
@@ -58,12 +58,12 @@
                                     };
                                     docWrite("{{ row.ticket.time_elapsed }}")</script>
                             </td>
-                            <td data-label="وضعیت تیکت  ">{% if row.ticket.status == 2 or row.ticket.status == 3 or row.ticket.status == 5 %}
+                            <td data-label="وضعیت تیکت  ">{% if row.ticket.status == 2 or row.ticket.status == 5 %}
                                 <div class="answeredBtn"><img src="../../static/helpdesk/images/check.svg"
                                         alt="answered" />
                                     <span class="answeredBtnText">پاسخ داده شده</apan>
                                 </div>
-                                {% endif %}{% if row.ticket.status == 4 %}
+                                {% endif %}{% if row.ticket.status == 4 or row.ticket.status == 3 %}
                                 <div class="closeBtn"><img src="../../static/helpdesk/images/x-circle.svg"
                                         alt="close" />
                                     <span class="closeBtnText">بسته شده</apan>
@@ -90,7 +90,7 @@
         {% else %}
         <div class="homepage-container">
             <h1 class="head">تیکت ها</h1>
-            <div class="card">
+            <div class="empty-card">
                 <div class="cardEmpty">
                     <img src="../../static/helpdesk/images/inbox.svg" alt="inbox" />
                     <h3 class="subEmpty">تیکتی وجود ندارد</h3>

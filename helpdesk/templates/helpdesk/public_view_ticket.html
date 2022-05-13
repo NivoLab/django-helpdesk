@@ -27,7 +27,7 @@
         <b>وضعیت تیکت </b>|<span class="status"> {{ ticket.get_status }}</span>
       </div>
     </div>
-  {% if ticket.get_status !=  "بسته شده" %}
+  {% if ticket.get_status !=  "بسته شده" and ticket.get_status != "حل شده" %}
       <form method="post" action="{% url 'helpdesk:update' ticket.id %}" class="form" enctype="multipart/form-data">
         <input type="hidden" name="key" value="{{ key }}" />
         <input type="hidden" name="mail" value="{{ mail }}" />

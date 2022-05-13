@@ -47,6 +47,14 @@
   text-align : right;
 }
 
+.empty-card {
+  margin-top   : 10px;
+  background   : #ffffff;
+  box-shadow   : 0px 4px 12px rgba(0, 0, 0, 0.12);
+  border-radius: 16px;
+  padding      : 16px;
+}
+
 .card {
   margin-top   : 10px;
   background   : #ffffff;
@@ -97,11 +105,10 @@ textarea {
 }
 
 .cardListBtn {
-  display           : flex;
-  flex-direction    : row;
-  justify-content   : space-between;
-  align-items       : flex-end;
-  /* padding-bottom : 16px; */
+  display        : flex;
+  flex-direction : row;
+  justify-content: space-between;
+  align-items    : flex-end;
 }
 
 .ticket {
@@ -132,14 +139,13 @@ textarea {
 }
 
 .answeredBtn {
-  background      : rgba(91, 199, 103, 0.12);
-  /* border       : 1px solid #5BC767; */
-  border          : 0px;
-  box-sizing      : border-box;
-  font-size       : 14px;
-  width           : fit-content;
-  padding         : 2px 10px;
-  border-radius   : 90px;
+  background   : rgba(91, 199, 103, 0.12);
+  border       : 0px;
+  box-sizing   : border-box;
+  font-size    : 14px;
+  width        : fit-content;
+  padding      : 2px 10px;
+  border-radius: 90px;
 }
 
 .answeredBtnText {
@@ -171,6 +177,7 @@ textarea {
 #close {
   display: none;
 }
+
 #ok {
   display: none;
 }
@@ -199,14 +206,13 @@ textarea {
 }
 
 .openBtn {
-  background      : rgba(0, 123, 255, 0.1);
-  /* border       : 1px solid #5BC767; */
-  border          : 0px;
-  box-sizing      : border-box;
-  font-size       : 14px;
-  width           : fit-content;
-  padding         : 2px 10px;
-  border-radius   : 90px;
+  background   : rgba(0, 123, 255, 0.1);
+  border       : 0px;
+  box-sizing   : border-box;
+  font-size    : 14px;
+  width        : fit-content;
+  padding      : 2px 10px;
+  border-radius: 90px;
 }
 
 .openBtnText {
@@ -219,14 +225,13 @@ textarea {
 }
 
 .closeBtn {
-  background      : rgba(255, 97, 130, 0.19);
-  /* border       : 1px solid #5BC767; */
-  border          : 0px;
-  box-sizing      : border-box;
-  font-size       : 14px;
-  width           : fit-content;
-  padding         : 2px 10px;
-  border-radius   : 90px;
+  background   : rgba(255, 97, 130, 0.19);
+  border       : 0px;
+  box-sizing   : border-box;
+  font-size    : 14px;
+  width        : fit-content;
+  padding      : 2px 10px;
+  border-radius: 90px;
 }
 
 .closeBtnText {
@@ -252,8 +257,6 @@ textarea {
   padding    : 5px 16px 5px 16px;
 }
 
-
-/* ************************************************************************** */
 .TicketContainer {
   display        : flex;
   flex-direction : column;
@@ -275,9 +278,7 @@ textarea {
   font-weight  : 500;
   font-size    : 24px;
   line-height  : 38px;
-  /* height    : 100%; */
   color        : #000000;
-  /* margin-top: 20px; */
   margin-bottom: 0px;
 }
 
@@ -338,15 +339,17 @@ textarea {
 .form-control-file:-webkit-file-upload-button {
   visibility: hidden !important;
 }
-.okButton{
-  width : 60px;
-height: 30px;
-border: 0;
-padding: 0;
-color: white;
-background: #5BC767;
-border-radius: 50px;
+
+.okButton {
+  width        : 60px;
+  height       : 30px;
+  border       : 0;
+  padding      : 0;
+  color        : white;
+  background   : #5BC767;
+  border-radius: 50px;
 }
+
 button,
 input,
 optgroup,
@@ -359,7 +362,7 @@ textarea:before {
   font-size    : 14px;
   line-height  : 17px;
   color        : #424242;
-  padding-right: 10px;
+  padding-right: 5px;
 }
 
 .submit-btn {
@@ -470,10 +473,6 @@ textarea::placeholder {
 
 }
 
-/* .status { */
-/* color: #5bc767; */
-/* font-weight: bold; */
-/* } */
 .ticketSend {
   margin       : 30px;
   background   : #ffffff;
@@ -524,83 +523,127 @@ textarea::placeholder {
 .ticketInfoHoler>p {
   margin: 8px;
 }
-.table{
-  margin: 20px;
-width :95%;
+
+.number {
+  width: 10%;
+}
+
+.table {
+  margin      : 20px;
+  width       : 95%;
+  table-layout: fixed;
+
+}
+
+.table td {
+  white-space  : nowrap;
+  overflow     : hidden;
+  text-overflow: ellipsis;
 }
 
 .table td,
 .table th {
-  padding       : 1.75rem 0rem;
-  vertical-align: top;
-  border-top    :0px;
-}
-@media (max-width: 600px) {
-  .table tr {
-  border: 1px solid #ECECEC;
-border-radius: 8px;
-  padding: 5px;
-  margin-bottom: 10px;
-}
-  .table {
-  margin: 0px;
-  width : 100%;
-}
-.table td,
-.table th {
-  padding       : 8px 0rem;
-  font-size: 15px;
-  margin-bottom: 5px;
+  padding       : 1.75rem 0.5rem;
   vertical-align: top;
   border-top    : 0px;
 }
-      .table thead {
+
+.subject {
+  margin: auto;
+  width : 35%;
+}
+
+.subject p {
+  overflow: hidden;
+  margin  : 0
+}
+
+@media (max-width: 600px) {
+  .table tr {
+    border       : 1px solid #ECECEC;
+    border-radius: 8px;
+    padding      : 5px;
+    margin-bottom: 10px;
+  }
+
+  .table {
+    margin: 0px;
+    width : 100%;
+  }
+
+  .number {
+    width: auto;
+  }
+
+  .table td,
+  .table th {
+    padding       : 8px 0rem;
+    font-size     : 15px;
+    margin-bottom : 5px;
+    vertical-align: top;
+    border-top    : 0px;
+  }
+
+  .table thead {
     display: none;
   }
-.card{
-  padding: 0;
-  background-color: transparent;
-  border: 0;
-  box-shadow : 0px 0px 0px rgba(0, 0, 0, 0.12);
-}
+
+  .card {
+    padding         : 0;
+    background-color: transparent;
+    border          : 0;
+    box-shadow      : 0px 0px 0px rgba(0, 0, 0, 0.12);
+  }
+
   .table,
   .table tbody,
   .table tr,
   .table td {
     display: block;
-    /* width  : 95%; */
+  }
+
+  .subject {
+    width: auto;
+
   }
 
   .table td {
-    padding-right: 50%;
-    text-align  : center;
-    position    : relative;
-    background: #FBFBFB;
-border-radius: 90px;
+    padding-right  : 45%;
+    text-align     : center;
+    position       : relative;
+    background     : #FBFBFB;
+    border-radius  : 90px;
+    align-items    : center;
+    display        : flex;
+    justify-content: center;
+    white-space    : nowrap;
+    overflow       : hidden;
+    text-overflow  : ellipsis;
   }
+
 
   .table td::before {
     content     : attr(data-label);
     position    : absolute;
-    right        : 0;
+    right       : 0;
     width       : 40%;
     margin-right: 10px;
-    border-left: 1px solid rgba(196, 196, 196, 0.7);
-    /* padding-left: 15px; */
+    border-left : 1px solid rgba(196, 196, 196, 0.7);
     font-size   : 15px;
     font-weight : bold;
     text-align  : right;
   }
+
   .TicketContainer {
     padding: 10px;
   }
 
-  /* .headerInside { */
-  /* display: none; */
-  /* } */
-
   .title {
     font-size: 20px;
+  }
+
+  .form-control-file {
+    width: 60%;
   }
 
   .innerText {
