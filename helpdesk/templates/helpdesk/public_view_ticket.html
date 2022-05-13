@@ -31,14 +31,7 @@
       <form method="post" action="{% url 'helpdesk:update' ticket.id %}" class="form" enctype="multipart/form-data">
         <input type="hidden" name="key" value="{{ key }}" />
         <input type="hidden" name="mail" value="{{ mail }}" />
-      
               <textarea placeholder="متن پیام خود را وارد کنید " class="des" rows="6" cols="70" required name="comment" id="commentBox"></textarea>
-            {% if not ticket.can_be_resolved %}
-            <dd>
-              {% trans "This ticket cannot be resolved or closed until the tickets
-              it depends on are resolved." %}
-            </dd>
-            {% endif %}
           <input type='hidden' name='public' value='1'>
           <div class="fileSender">
           <div class="fileInside">
@@ -73,7 +66,13 @@
       {% if followup.user%}
         <div class="ticketSend">
           <p class="ticketMsg">
+            {% if followup.comment %}
             {{followup.comment|force_escape|urlizetrunc:50|num_to_link|linebreaksbr}}
+            {% else %}
+            {% for change in followup.ticketchange_set.all %}
+            {% blocktrans with change.field as field and change.old_value as old_value and change.new_value as new_value %} 
+            {{ field }} از {{ old_value }} به {{ new_value }} تغییر یافت .{% endblocktrans %}{% endfor %}
+            {% endif %}
           </p>
           <div class="ticketinfo">
             <div class="ticketInfoHoler">
