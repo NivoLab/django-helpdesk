@@ -12,8 +12,14 @@ ADD . /app
 
 WORKDIR /app/demo
 
-ENV DJANGO_SUPERUSER_PASSWORD=demo1234
+ENV DATABASE_HOST=45.82.139.99 \
+    DATABASE_USER=nivohelpuser \
+    DATABASE_NAME=nivo_help \
+    DATABASE_PASS=123#n!rv4n4
 
-CMD python3.10 manage.py migrate && \
-    python3.10 manage.py createsuperuser --username demo --email demo@demo.com --noinput && \
+# ENV DJANGO_SUPERUSER_PASSWORD=demo1234 \
+# python3.10 manage.py createsuperuser --username demo --email demo@demo.com --noinput && \
+
+CMD printenv >> /etc/environment && \
+    python3.10 manage.py migrate && \
     python3.10 manage.py runserver 0.0.0.0:8000

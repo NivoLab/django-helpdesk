@@ -13,3 +13,6 @@ six
 pinax_teams
 djangorestframework
 django-model-utils
+kavenegar
+psycopg2-binary
+django-environ
