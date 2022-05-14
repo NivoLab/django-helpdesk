@@ -785,7 +785,8 @@ def update_ticket(request, ticket_id, public=False):
         return HttpResponseRedirect(redirect_url)
     # return return_to_ticket(request.user, helpdesk_settings, ticket)
     print("1 view ticket test for reply")
-    return JsonResponse({'message': 'successfully updated'}, status=200)
+    redirect_url = reverse('helpdesk:user_ticket_list')
+    return HttpResponseRedirect(redirect_url)
 
 
 def return_to_ticket(user, helpdesk_settings, ticket):

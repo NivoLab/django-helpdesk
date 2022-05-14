@@ -117,12 +117,14 @@ class BaseCreateTicketView(abstract_views.AbstractCreateTicketMixin, FormView):
         else:
             ticket = form.save(user=self.request.user if self.request.user.is_authenticated else None)
             try:
-                return HttpResponseRedirect('%s?ticket=%s&email=%s&key=%s' % (
-                    reverse('helpdesk:public_view'),
-                    ticket.ticket_for_url,
-                    urlquote(ticket.submitter_email),
-                    ticket.secret_key)
-                )
+                # * added by sia
+                return JsonResponse({'error': False, 'message': 'ticket successfully created'}, status=200)
+                # return HttpResponseRedirect('%s?ticket=%s&email=%s&key=%s' % (
+                #     reverse('helpdesk:public_view'),
+                #     ticket.ticket_for_url,
+                #     urlquote(ticket.submitter_email),
+                #     ticket.secret_key)
+                # )
             except ValueError:
                 # if someone enters a non-int string for the ticket
                 return HttpResponseRedirect(reverse('helpdesk:home'))
@@ -251,8 +253,8 @@ def email_ticket_list(request):
 
     template_url = 'helpdesk/public_ticket_list.html'
 
-    email = request.GET.get('email', None)
-    if email is None:
+    email = request.user.email
+    if not email:
         return JsonResponse({'error': True, 'message': 'email is none'})
     
     tickets = Ticket.objects.filter(submitter_email=email)
