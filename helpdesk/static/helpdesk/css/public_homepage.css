@@ -1,0 +1,661 @@
+@font-face {
+  font-family : IRANSansWeb;
+  font-style  : normal;
+  font-weight : 300;
+  font-display: block;
+  src         : url("../../helpdesk/fonts/IRANSansWeb/eot/IRANSansWeb(FaNum)_Light.eot");
+  src         : url("../../helpdesk/fonts/IRANSansWeb/eot/IRANSansWeb(FaNum)_Bold.eot");
+  src         : url("../../helpdesk/fonts/IRANSansWeb/eot/IRANSansWeb(FaNum)_Light.eot?#iefix") format("embedded-opentype"),
+    url("../../helpdesk/fonts/IRANSansWeb/ttf/IRANSansWeb(FaNum)_Light.ttf") format("truetype");
+}
+
+.homepage-container {
+  margin: 9%;
+}
+
+.listContainer {
+  margin-top: 5%;
+}
+
+.showBtn {
+  background   : rgba(0, 123, 255, 0.15);
+  border-radius: 50px;
+  padding      : 5px 10px;
+  border       : 0px;
+  cursor       : pointer;
+}
+
+.showText {
+  color       : #007BFF;
+  font-weight : 500;
+  font-size   : 14px;
+  line-height : 20px;
+  margin-right: 10px;
+  margin-left : 10px;
+  margin-top  : 10px;
+}
+
+.head {
+  font-style : normal;
+  font-weight: 500;
+  font-size  : 16px;
+  line-height: 26px;
+  display    : flex;
+  align-items: center;
+  text-align : center;
+  color      : #000000;
+  text-align : right;
+}
+
+.empty-card {
+  margin-top   : 10px;
+  background   : #ffffff;
+  box-shadow   : 0px 4px 12px rgba(0, 0, 0, 0.12);
+  border-radius: 16px;
+  padding      : 16px;
+}
+
+.card {
+  margin-top   : 10px;
+  background   : #ffffff;
+  box-shadow   : 0px 4px 12px rgba(0, 0, 0, 0.12);
+  border-radius: 16px;
+  padding      : 16px;
+}
+
+textarea {
+  background   : #FFFFFF;
+  border       : 0.5px solid #C9C9C9;
+  border-radius: 8px;
+  padding      : 10px;
+  width        : 100%;
+}
+
+.cardEmpty {
+  display        : flex;
+  flex-direction : column;
+  align-items    : center;
+  justify-content: space-around;
+  height         : 200px;
+}
+
+.subEmpty {
+  font-style : normal;
+  font-weight: 500;
+  font-size  : 14px;
+  line-height: 23px;
+  color      : #000000;
+}
+
+.btn {
+  background   : #5bc767 !important;
+  border-radius: 50px;
+  cursor       : pointer;
+
+}
+
+.btnText {
+  color       : #ffffff;
+  font-weight : 500;
+  font-size   : 16px;
+  line-height : 20px;
+  margin-right: 10px;
+  margin-left : 10px;
+  margin-top  : 10px;
+}
+
+.cardListBtn {
+  display        : flex;
+  flex-direction : row;
+  justify-content: space-between;
+  align-items    : flex-end;
+}
+
+.ticket {
+  display            : flex;
+  flex-direction     : row;
+  justify-content    : space-between;
+  align-items        : center;
+  margin             : 10px;
+  padding            : 15px;
+  border             : 0px solid rgba(144, 143, 143, 0.8) !important;
+  border-bottom-width: 0.4px;
+}
+
+.ticketTitle {
+  font-style : normal;
+  font-weight: 500;
+  font-size  : 16px;
+  line-height: 26px;
+  text-align : center;
+  color      : #000000;
+}
+
+.ticketSub {
+  font-weight: 500;
+  font-size  : 13px;
+  line-height: 21px;
+  color      : #555454;
+}
+
+.answeredBtn {
+  background   : rgba(91, 199, 103, 0.12);
+  border       : 0px;
+  box-sizing   : border-box;
+  font-size    : 14px;
+  width        : fit-content;
+  padding      : 2px 10px;
+  border-radius: 90px;
+}
+
+.answeredBtnText {
+  font-weight: 700;
+  font-size  : 14px;
+  line-height: 23px;
+  color      : #5BC767;
+  opacity    : 0.66;
+  padding    : 5px 5px;
+}
+
+.closePart {
+  width            : 270px;
+  height           : 270px;
+  display          : flex;
+  position         : fixed;
+  top              : 50%;
+  left             : 50%;
+  background-color : white;
+  -webkit-transform: translate(-50%, -50%);
+  transform        : translate(-50%, -50%);
+  align-items      : center;
+  flex-flow        : column;
+  justify-content  : space-evenly;
+  border           : 1px solid rgb(209, 209, 209);
+  border-radius    : 10px;
+}
+
+#close {
+  display: none;
+}
+
+#ok {
+  display: none;
+}
+
+.backBtn {
+  border          : 1px solid #5BC767;
+  border-radius   : 60px;
+  background-color: white;
+  padding         : 8px 40px;
+  margin          : 0px 10px;
+}
+
+.btns {
+  margin-top     : 20px;
+  display        : flex;
+  align-items    : center;
+  justify-content: center;
+}
+
+.backBtnText {
+  color      : #5BC767;
+  padding    : 5px 5px;
+  font-weight: 700;
+  font-size  : 14px;
+  line-height: 23px;
+}
+
+.openBtn {
+  background   : rgba(0, 123, 255, 0.1);
+  border       : 0px;
+  box-sizing   : border-box;
+  font-size    : 14px;
+  width        : fit-content;
+  padding      : 2px 10px;
+  border-radius: 90px;
+}
+
+.openBtnText {
+  font-weight: 700;
+  font-size  : 14px;
+  line-height: 23px;
+  color      : #007BFF;
+  opacity    : 0.66;
+  padding    : 5px 5px;
+}
+
+.closeBtn {
+  background   : rgba(255, 97, 130, 0.19);
+  border       : 0px;
+  box-sizing   : border-box;
+  font-size    : 14px;
+  width        : fit-content;
+  padding      : 2px 10px;
+  border-radius: 90px;
+}
+
+.closeBtnText {
+  font-weight: 700;
+  font-size  : 14px;
+  line-height: 23px;
+  color      : #E02048;
+  opacity    : 0.66;
+  padding    : 5px 5px;
+}
+
+.seeBtn {
+  background   : rgba(0, 123, 255, 0.15);
+  border-radius: 88px;
+}
+
+.seeBtnText {
+  font-weight: 500;
+  font-size  : 13px;
+  line-height: 16px;
+  color      : #007BFF;
+  opacity    : 0.66;
+  padding    : 5px 16px 5px 16px;
+}
+
+.TicketContainer {
+  display        : flex;
+  flex-direction : column;
+  justify-content: space-between;
+  padding        : 3% 20%;
+}
+
+.ticket-header {
+  position       : relative;
+  display        : flex;
+  flex-direction : row;
+  justify-content: space-between;
+  align-items    : flex-end;
+  padding-bottom : 10px;
+}
+
+.title {
+  font-style   : normal;
+  font-weight  : 500;
+  font-size    : 24px;
+  line-height  : 38px;
+  color        : #000000;
+  margin-bottom: 0px;
+}
+
+.headerHolder {
+  display       : flex;
+  flex-direction: column;
+}
+
+.headerInside {
+  margin-top    : 5px;
+  display       : flex;
+  flex-direction: row;
+  align-items   : center;
+}
+
+.innerText {
+  font-style : normal;
+  font-weight: normal;
+  font-size  : 14px;
+  line-height: 22px;
+  color      : #a9a3a3;
+}
+
+.divider {
+  padding: 0px 10px 15px 10px;
+}
+
+.fileSender {
+  margin-top   : 20px;
+  background   : rgba(91, 199, 103, 0.07);
+  border-radius: 8px;
+  padding      : 8px;
+}
+
+.form-control-file {
+  width: auto;
+}
+
+.form {
+  margin: 40px 0px;
+}
+
+.fileInside {
+  border         : 1px dashed rgba(91, 199, 103, 0.5);
+  border-radius  : 8px;
+  display        : flex;
+  flex-direction : row;
+  align-content  : center;
+  justify-content: center;
+  align-items    : center;
+  padding        : 10px;
+}
+
+.fileInside>p {
+  margin: 0 5px !important;
+}
+
+.form-control-file:-webkit-file-upload-button {
+  visibility: hidden !important;
+}
+
+.okButton {
+  width        : 60px;
+  height       : 30px;
+  border       : 0;
+  padding      : 0;
+  color        : white;
+  background   : #5BC767;
+  border-radius: 50px;
+}
+
+button,
+input,
+optgroup,
+select,
+textarea:before {
+  content      : 'بارگزاری عکس';
+  font-family  : "IRANSansWeb";
+  font-style   : normal;
+  font-weight  : 500;
+  font-size    : 14px;
+  line-height  : 17px;
+  color        : #424242;
+  padding-right: 5px;
+}
+
+.submit-btn {
+  margin-top   : 20px;
+  background   : #5bc767;
+  border-radius: 50px;
+  border       : 0;
+  cursor       : pointer;
+  width        : 100%;
+}
+
+.ticket-btnText {
+  font-style : normal;
+  font-weight: 500;
+  font-size  : 18px;
+  line-height: 28px;
+  color      : #ffffff;
+  text-align : center;
+  padding-top: 10px;
+}
+
+.textarea {
+  background   : #ffffff;
+  border       : 0.5px solid #c9c9c9;
+  box-sizing   : border-box;
+  border-radius: 8px;
+  min-width    : 100%;
+  max-width    : 100%;
+  font-style   : normal;
+  font-weight  : normal;
+  font-size    : 14px;
+  line-height  : 22px;
+  color        : #a3a3a3;
+  padding      : 16px;
+  margin-top   : 20px;
+}
+
+textarea::-webkit-input-placeholder {
+  color      : #a3a3a3;
+  font-family: "IRANSansWeb";
+}
+
+textarea:-moz-placeholder {
+  /* Firefox 18- */
+  color      : #a3a3a3;
+  font-family: "IRANSansWeb";
+}
+
+textarea::-moz-placeholder {
+  /* Firefox 19+ */
+  color      : #a3a3a3;
+  font-family: "IRANSansWeb";
+}
+
+textarea:-ms-input-placeholder {
+  color      : #a3a3a3;
+  font-family: "IRANSansWeb";
+}
+
+textarea::placeholder {
+  color      : #a3a3a3;
+  font-family: "IRANSansWeb";
+}
+
+.form-control {
+  position     : relative;
+  margin       : 20px 0px;
+  min-width    : 100%;
+  max-width    : 100%;
+  padding      : 15px;
+  background   : #ffffff;
+  height       : auto;
+  border       : 0.5px solid #c9c9c9;
+  box-sizing   : border-box;
+  border-radius: 8px;
+  font-family  : "IRANSansWeb";
+  font-style   : normal;
+  font-weight  : normal;
+  font-size    : 14px;
+  line-height  : 22px;
+  color        : #a3a3a3;
+}
+
+.textHolder {
+  background   : rgba(240, 240, 240, 0.35);
+  border       : 0.5px solid #c9c9c9;
+  box-sizing   : border-box;
+  border-radius: 8px;
+  padding      : 16px;
+  font-style   : normal;
+  font-weight  : 500;
+  font-size    : 14px;
+  line-height  : 22px;
+  color        : #000000;
+  margin-top   : 10px;
+
+}
+
+.holder {
+  display        : flex;
+  flex-flow      : row;
+  width          : 100%;
+  justify-content: space-between;
+}
+
+.holder>div {
+  width: 49%;
+
+}
+
+.ticketSend {
+  margin       : 30px;
+  background   : #ffffff;
+  border       : 1px solid #5bc767;
+  box-sizing   : border-box;
+  border-radius: 8px;
+  float        : right;
+  width        : 70%;
+  padding      : 16px;
+}
+
+.ticketMsg {
+  font-style : normal;
+  font-weight: normal;
+  font-size  : 16px;
+  line-height: 25px;
+  text-align : right;
+  color      : #313131;
+}
+
+.ticketInfoHoler {
+  display       : flex;
+  flex-direction: row;
+  align-items   : center;
+  gap           : 20px;
+}
+
+.ticketInfoHoler p {
+  font-style : normal;
+  font-weight: normal;
+  font-size  : 14px;
+  line-height: 22px;
+  text-align : right;
+  color      : #000000;
+}
+
+.ticketResive {
+  margin       : 30px;
+  background   : #fafafa;
+  border       : 0.5px solid #c9c9c9;
+  box-sizing   : border-box;
+  border-radius: 8px;
+  float        : left;
+  width        : 70%;
+  padding      : 16px;
+}
+
+.ticketInfoHoler>p {
+  margin: 8px;
+}
+
+.number {
+  width: 10%;
+}
+
+.table {
+  margin      : 20px;
+  width       : 95%;
+  table-layout: fixed;
+
+}
+
+.table td {
+  white-space  : nowrap;
+  overflow     : hidden;
+  text-overflow: ellipsis;
+}
+
+.table td,
+.table th {
+  padding       : 1.75rem 0.5rem;
+  vertical-align: top;
+  border-top    : 0px;
+}
+
+.subject {
+  margin: auto;
+  width : 35%;
+}
+
+.subject p {
+  overflow: hidden;
+  margin  : 0
+}
+
+@media (max-width: 600px) {
+  .table tr {
+    border       : 1px solid #ECECEC;
+    border-radius: 8px;
+    padding      : 5px;
+    margin-bottom: 10px;
+  }
+
+  .table {
+    margin: 0px;
+    width : 100%;
+  }
+
+  .number {
+    width: auto;
+  }
+
+  .table td,
+  .table th {
+    padding       : 8px 0rem;
+    font-size     : 15px;
+    margin-bottom : 5px;
+    vertical-align: top;
+    border-top    : 0px;
+  }
+
+  .table thead {
+    display: none;
+  }
+
+  .card {
+    padding         : 0;
+    background-color: transparent;
+    border          : 0;
+    box-shadow      : 0px 0px 0px rgba(0, 0, 0, 0.12);
+  }
+
+  .table,
+  .table tbody,
+  .table tr,
+  .table td {
+    display: block;
+  }
+
+  .subject {
+    width: auto;
+
+  }
+
+  .table td {
+    padding-right  : 45%;
+    text-align     : center;
+    position       : relative;
+    background     : #FBFBFB;
+    border-radius  : 90px;
+    align-items    : center;
+    display        : flex;
+    justify-content: center;
+    white-space    : nowrap;
+    overflow       : hidden;
+    text-overflow  : ellipsis;
+  }
+
+
+  .table td::before {
+    content     : attr(data-label);
+    position    : absolute;
+    right       : 0;
+    width       : 40%;
+    margin-right: 10px;
+    border-left : 1px solid rgba(196, 196, 196, 0.7);
+    font-size   : 15px;
+    font-weight : bold;
+    text-align  : right;
+  }
+
+  .TicketContainer {
+    padding: 10px;
+  }
+
+  .title {
+    font-size: 20px;
+  }
+
+  .form-control-file {
+    width: 60%;
+  }
+
+  .innerText {
+    font-size: 12px;
+  }
+
+  .imgHeader {
+    width: 150px;
+  }
+
+  .ticket-btnText {
+    padding-top  : 5px;
+    margin-bottom: 5px;
+  }
+}

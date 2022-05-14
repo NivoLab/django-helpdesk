@@ -1092,7 +1092,7 @@ msgstr ""
 
 #: templates/helpdesk/base.html:10
 msgid "Powered by django-helpdesk"
-msgstr ""
+msgstr " "
 
 #: templates/helpdesk/base.html:20 templates/helpdesk/rss_list.html:9
 #: templates/helpdesk/rss_list.html:24 templates/helpdesk/rss_list.html:31
@@ -1111,7 +1111,7 @@ msgstr ""
 #: templates/helpdesk/base.html:52 templates/helpdesk/public_base.html:6
 #: templates/helpdesk/public_base.html:18
 msgid "Helpdesk"
-msgstr ""
+msgstr "Nivo ticketing"
 
 #: templates/helpdesk/base.html:52 templates/helpdesk/public_base.html:6
 #: templates/helpdesk/public_base.html:18
@@ -1909,6 +1909,10 @@ msgstr ""
 #: templates/helpdesk/ticket_dependency_del.html:11
 msgid "Don't Delete"
 msgstr ""
+
+#: templates/helpdesk/include/alert_form_errors.html:4
+msgid "There are errors in the form"
+msgstr "اطلاعات را به درستی وارد کنید" 
 
 #: templates/helpdesk/ticket_cc_del.html:13
 #: templates/helpdesk/ticket_dependency_del.html:13

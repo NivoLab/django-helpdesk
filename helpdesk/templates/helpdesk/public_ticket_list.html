@@ -6,22 +6,104 @@
 
 <div>
     {% if result %}
-    {% for row in result %}
-    <p>
-        <span>
-            {{row.ticket.id}}
-        </span>
-        <span>
-            {{row.ticket.description}}
-        </span>
-        <span>
-            {{row.queue}}
-        </span>
-    </p>    
-    {% endfor %}
-    {% else %}
-    <p>There is no ticket</p>
-    {% endif %}
-</div>
+    <div class="container listContainer">
+        <div class="cardListBtn">
+            <h1 class="head">تیکت ها</h1>
+            <a class="btn" href="{% url 'helpdesk:submit' %}">
+                <img src="../../static/helpdesk/images/plus-circle.svg" alt="inbox" /><span class="btnText">افزودن تیکت
+                    جدید
+                    </apan>
+            </a>
+        </div>
+        <div class="card">
+            <div class="cardList">
+                <table class="table">
+                    <thead>
+                        <tr style="border-bottom: 4px dashed #5BC767;">
+                            <th scope="col"  class="number">شماره تیکت</th>
+                            <th scope="col"  class="subject">موضوع</th>
+                            <th scope="col">تاریخ ایجاد</th>
+                            <th scope="col">وضعیت تیکت</th>
+                            <th scope="col">مشاهده</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for row in result reversed %}
+                        <tr>
+                            <td data-label="شماره تیکت" class="number">{{ forloop.counter }} {{ row.from_location }} {{row.to_location }}</td>
+                            <td data-label="موضوع" class="subject"><p > {{row.ticket.title}}</p></td>
+                            <td data-label="تاریخ ایجاد">
+                                <script>function docWrite(variable) {
+                                        var text = ""
+                                        if (SplitTime(variable).Days != 0 && SplitTime(variable).Hours != 0) {
+                                            text += `${SplitTime(variable).Days} روز و`
+                                        }
+                                        if (SplitTime(variable).Days != 0 && SplitTime(variable).Hours == 0) {
+                                            text += `${SplitTime(variable).Days} روز و ${SplitTime(variable).Minutes}  دقیقه پیش`
+                                        }
+                                        if (SplitTime(variable).Hours != 0) {
+                                            text += ` ${SplitTime(variable).Hours}  ساعت پیش `
+                                        }
+                                        if (SplitTime(variable).Days == 0 && SplitTime(variable).Hours == 0) {
+                                            if (SplitTime(variable).Minutes != 0) {
+                                                text += `${SplitTime(variable).Minutes} دقیقه پیش `
+                                            } else {
+                                                text += "اکنون"
+                                            }
+                                        }
+                                        document.write(text);
+                                    };
+                                    function SplitTime(numberOfMins) {
+                                        return ({ "Days": Math.floor(numberOfMins / (24 * 60)), "Hours": Math.floor((numberOfMins % (24 * 60)) / 60), "Minutes": Math.floor(numberOfMins % (24 * 60) % 60) })
+                                    };
+                                    docWrite("{{ row.ticket.time_elapsed }}")</script>
+                            </td>
+                            <td data-label="وضعیت تیکت  ">{% if row.ticket.status == 2 or row.ticket.status == 5 %}
+                                <div class="answeredBtn"><img src="../../static/helpdesk/images/check.svg"
+                                        alt="answered" />
+                                    <span class="answeredBtnText">پاسخ داده شده</apan>
+                                </div>
+                                {% endif %}{% if row.ticket.status == 4 or row.ticket.status == 3 %}
+                                <div class="closeBtn"><img src="../../static/helpdesk/images/x-circle.svg"
+                                        alt="close" />
+                                    <span class="closeBtnText">بسته شده</apan>
+                                </div>
+                                {% endif %}
+                                {% if row.ticket.status == 1 %}
+                                <div class="openBtn"><img src="../../static/helpdesk/images/file-minus.svg"
+                                        alt="open" />
+                                    <span class="openBtnText">در دست بررسی</apan>
+                                </div>
+                                {% endif %}
+                            </td>
+                            <td data-label="مشاهده  "><a class="showBtn"
+                                    href="/view/?ticket={{ row.ticket.id }}&email={{ row.ticket.submitter_email }}&key={{ row.ticket.secret_key }}"><img
+                                        src="../../static/helpdesk/images/eye.svg" alt="show" /><span
+                                        class="showText">مشاهده
+                                        </apan></a></td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        {% else %}
+        <div class="homepage-container">
+            <h1 class="head">تیکت ها</h1>
+            <div class="empty-card">
+                <div class="cardEmpty">
+                    <img src="../../static/helpdesk/images/inbox.svg" alt="inbox" />
+                    <h3 class="subEmpty">تیکتی وجود ندارد</h3>
+                    <a class="btn" href="{% url 'helpdesk:submit' %}">
+                        <img src="../../static/helpdesk/images/plus.svg" alt="inbox" /><span class="btnText">افزودن تیکت
+                            جدید
+                            </apan>
+                    </a>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+        <script>
 
-{% endblock %}
+        </script>
+        {% endblock %}

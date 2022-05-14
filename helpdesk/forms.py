@@ -162,23 +162,23 @@ class AbstractTicketForm(CustomFieldMixin, forms.Form):
     """
     queue = forms.ChoiceField(
         widget=forms.Select(attrs={'class': 'form-control'}),
-        label=_('Queue'),
+        label="",
         required=True,
         choices=()
     )
 
     title = forms.CharField(
-        max_length=100,
         required=True,
-        widget=forms.TextInput(attrs={'class': 'form-control'}),
-        label=_('Summary of the problem'),
+        widget=forms.TextInput(attrs={'class': 'form-control',
+                               'placeholder': 'موضوع تیکت | لطفا موضوع تیکت را بنویسید'}),
+        label="",
     )
 
     body = forms.CharField(
-        widget=forms.Textarea(attrs={'class': 'form-control'}),
-        label=_('Description of your issue'),
+        widget=forms.Textarea(attrs={'class': 'form-control', 'placeholder': 'متن پیام خود را وارد کنید'}),
+        label="",
         required=True,
-        help_text=_('Please be as descriptive as possible and include all details'),
+        help_text="",
     )
 
     priority = forms.ChoiceField(
@@ -186,22 +186,22 @@ class AbstractTicketForm(CustomFieldMixin, forms.Form):
         choices=Ticket.PRIORITY_CHOICES,
         required=True,
         initial=getattr(settings, 'HELPDESK_PUBLIC_TICKET_PRIORITY', '3'),
-        label=_('Priority'),
+        label="",
         help_text=_("Please select a priority carefully. If unsure, leave it as '3'."),
     )
 
-    due_date = forms.DateTimeField(
-        widget=forms.TextInput(attrs={'class': 'form-control', 'autocomplete': 'off'}),
-        required=False,
-        input_formats=[CUSTOMFIELD_DATE_FORMAT, CUSTOMFIELD_DATETIME_FORMAT, '%d/%m/%Y', '%m/%d/%Y', "%d.%m.%Y"],
-        label=_('Due on'),
-    )
+    # due_date = forms.DateTimeField(
+    #     widget=forms.TextInput(attrs={'class': 'form-control', 'autocomplete': 'off'}),
+    #     required=False,
+    #     input_formats=[CUSTOMFIELD_DATE_FORMAT, CUSTOMFIELD_DATETIME_FORMAT, '%d/%m/%Y', '%m/%d/%Y', "%d.%m.%Y"],
+    #     label=_('Due on'),
+    # )
 
     attachment = forms.FileField(
-        widget=forms.FileInput(attrs={'class': 'form-control-file'}),
+        widget=forms.FileInput(attrs={'class': 'form-control-file', 'placeholder': 'آپلود عکس'}),
         required=False,
-        label=_('Attach File'),
-        help_text=_('You can attach a file to this ticket. Only file types such as plain text (.txt), a document (.pdf, .docx, or .odt), or screenshot (.png or .jpg) may be uploaded.'),
+        label="",
+        help_text="",
     )
 
     class Media:
@@ -287,10 +287,10 @@ class AbstractTicketForm(CustomFieldMixin, forms.Form):
                 'priority',
                 getattr(settings, "HELPDESK_PUBLIC_TICKET_PRIORITY", "3")
             ),
-            due_date=self.cleaned_data.get(
-                'due_date',
-                getattr(settings, "HELPDESK_PUBLIC_TICKET_DUE_DATE", None)
-            ) or None,
+            # due_date=self.cleaned_data.get(
+            #     'due_date',
+            #     getattr(settings, "HELPDESK_PUBLIC_TICKET_DUE_DATE", None)
+            # ) or None,
             kbitem=kbitem,
         )
 
@@ -413,10 +413,11 @@ class PublicTicketForm(AbstractTicketForm):
     Ticket Form creation for all users (public-facing).
     """
     submitter_email = forms.EmailField(
-        widget=forms.TextInput(attrs={'class': 'form-control', 'type': 'email'}),
+        widget=forms.TextInput(attrs={'class': 'form-control', 'type': 'phone',
+                               'placeholder': 'شماره موبایل | مثال : 09123456789'}),
         required=True,
-        label=_('Your E-Mail Address'),
-        help_text=_('We will e-mail you when your ticket is updated.'),
+        label="",
+        help_text="",
     )
 
     def __init__(self, hidden_fields=(), readonly_fields=(), *args, **kwargs):
@@ -451,7 +452,7 @@ class PublicTicketForm(AbstractTicketForm):
             )
 
         if 'queue' in self.fields:
-            self.fields['queue'].choices = [('', '--------')] + [
+            self.fields['queue'].choices = [('', 'نوع تیکت | لطفا یکی از گزینه های زیر را انتخاب کنید')] + [
                 (q.id, q.title) for q in public_queues]
 
     def _get_queue(self):
