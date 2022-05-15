@@ -40,11 +40,12 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 <script>
     $("form").on("submit", function (e) {
-            $form = $(this);
+            const formData = new FormData(document.querySelector('form'))
             $.ajax({
                 url: window.location.url,
-                type: "post",
-                data: $form.serialize(),
+                type: "POST",
+                data: formData, contentType: false,
+                processData : false,
                 success: function (res) {
                     if (res.error) {
                         console.log(res)
