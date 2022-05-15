@@ -459,7 +459,7 @@ class TicketForm(AbstractTicketForm):
         #                     followup=followup,
         #                     files=files,
         #                     user=user)
-        self._send_sms(ticket=ticket, token='staff')
+        self._send_sms(ticket=ticket, token='create')
         return ticket
 
 
@@ -546,7 +546,7 @@ class PublicTicketForm(AbstractTicketForm):
         #                     queue=queue,
         #                     followup=followup,
         #                     files=files)
-        self._send_sms(ticket=ticket, token='public')
+        self._send_sms(ticket=ticket, token='create')
         return ticket
 
 
