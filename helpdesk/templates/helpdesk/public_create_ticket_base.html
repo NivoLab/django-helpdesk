@@ -2,30 +2,64 @@
 {% load load_helpdesk_settings %}
 
 {% with request|load_helpdesk_settings as helpdesk_settings %}
-    {% if helpdesk_settings.HELPDESK_SUBMIT_A_TICKET_PUBLIC %}
-    {% if form.errors %}
-    {% include 'helpdesk/include/alert_form_errors.html' %}
-    {% endif %}
-    <form role="form" method='post' enctype='multipart/form-data'>
-        {% csrf_token %}
-        {{ form.queue }}
-        {{ form.title }}
-        {{ form.body }}
-        {{ form.priority }}
-        <div class="fileSender">
-            <div class="fileInside">
-                <img src="../../static/helpdesk/images/Paperclip.svg" /><p>آپلود عکس</p>
-                {{ form.attachment }}
-            </div>
+{% if helpdesk_settings.HELPDESK_SUBMIT_A_TICKET_PUBLIC %}
+{% if form.errors %}
+{% include 'helpdesk/include/alert_form_errors.html' %}
+{% endif %}
+<form role="form">
+    {% csrf_token %}
+    {{ form.queue }}
+    {{ form.title }}
+    {{ form.body }}
+    {{ form.priority }}
+    <div class="fileSender">
+        <div class="fileInside">
+            <img src="../../static/helpdesk/images/Paperclip.svg" />
+            <p>آپلود عکس</p>
+            {{ form.attachment }}
         </div>
-        
-        {{ form.submitter_email }}
-        <!-- {{ form|bootstrap4form }} -->
-        <button  type="submit" class="submit-btn">
-            <p class="ticket-btnText">ثبت نظر</p>
-        </button>
-            </form>
-    {% else %}
-        <p>{% trans "Public ticket submission is disabled. Please contact the administrator for assistance." %}</p>
-    {% endif %}
+    </div>
+
+    {{ form.submitter_email }}
+    <!-- {{ form|bootstrap4form }} -->
+    <button type="submit" class="submit-btn">
+        <p class="ticket-btnText">ثبت نظر</p>
+    </button>
+</form>
+<div id="ok" class="closePart"><img width="70" height="70" src="../../static/helpdesk/images/Frame_12978.svg"
+        alt="ok" />
+    <p>تیکت شما با موفقیت ارسال گردید</p><button class="okButton"
+        onclick="window.location.replace('/tickets/list?email={{ form.submitter_email.value }}');" type="button">
+        تایید
+    </button>
+</div>
+{% else %}
+<p>{% trans "Public ticket submission is disabled. Please contact the administrator for assistance." %}</p>
+{% endif %}
 {% endwith %}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script>
+    $("form").on("submit", function (e) {
+            const formData = new FormData(document.querySelector('form'))
+            $.ajax({
+                url: window.location.url,
+                type: "POST",
+                data: formData, contentType: false,
+                processData : false,
+                success: function (res) {
+                    if (res.error) {
+                        console.log(res)
+                        alert("خطایی پیش آمده لطفا دوباره تلاش کنید .")
+                    } else {
+                        console.log('Success:', res);
+                        document.getElementById("ok").style.display = "flex";
+                    }
+                },
+                error: function (error) {
+                    alert("خطایی پیش آمده لطفا دوباره تلاش کنید .")
+                }
+            });
+            e.preventDefault();
+            return false;
+        });
+</script>
