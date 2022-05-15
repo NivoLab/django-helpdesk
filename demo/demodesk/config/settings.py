@@ -180,7 +180,10 @@ SITE_ID = 1
 # Sessions
 # https://docs.djangoproject.com/en/1.11/topics/http/sessions
 
-SESSION_COOKIE_AGE = 86400  # = 1 day
+# * added by sia
+# SESSION_COOKIE_AGE = 86400  # = 1 day
+SESSION_COOKIE_AGE = 365*24*60*60 # 365 day
+SESSION_EXPIRE_AT_BROWSER_CLOSE = False
 
 # For better default security, set these cookie flags, but
 # these are likely to cause problems when testing locally
