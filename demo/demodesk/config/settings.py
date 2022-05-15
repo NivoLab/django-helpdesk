@@ -151,20 +151,20 @@ LOGIN_REDIRECT_URL = 'helpdesk:home'
 # }
 
 DATABASES = {
-    # 'default':{
-    #     'ENGINE': 'django.db.backends.postgresql',
-    #     'NAME': 'nivo_help',
-    #     'USER': 'nivohelpuser',
-    #     'HOST': '45.82.139.99',
-    #     'PASSWORD': '123#n!rv4n4',
-    # } 
-    'default': {
+    'default':{
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': env("DATABASE_NAME"),
-        'USER': env("DATABASE_USER"),
-        'HOST': env("DATABASE_HOST"),
-        'PASSWORD': env("DATABASE_PASS"),
-    }
+        'NAME': 'nivo_help',
+        'USER': 'nivohelpuser',
+        'HOST': '45.82.139.99',
+        'PASSWORD': '123#n!rv4n4',
+    } 
+    # 'default': {
+    #     'ENGINE': 'django.db.backends.postgresql',
+    #     'NAME': env("DATABASE_NAME"),
+    #     'USER': env("DATABASE_USER"),
+    #     'HOST': env("DATABASE_HOST"),
+    #     'PASSWORD': env("DATABASE_PASS"),
+    # }
 }
 
 

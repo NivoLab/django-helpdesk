@@ -413,8 +413,7 @@ class PublicTicketForm(AbstractTicketForm):
     Ticket Form creation for all users (public-facing).
     """
     submitter_email = forms.EmailField(
-        widget=forms.TextInput(attrs={'class': 'form-control', 'type': 'phone',
-                               'placeholder': 'شماره موبایل | مثال : 09123456789'}),
+        widget=forms.HiddenInput(),
         required=True,
         label="",
         help_text="",
