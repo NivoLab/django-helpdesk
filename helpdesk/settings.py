@@ -32,6 +32,8 @@ if os.environ.get('SECURE_PROXY_SSL_HEADER'):
     SESSION_COOKIE_SECURE = True
     CSRF_COOKIE_SECURE = True
 
+SESSION_COOKIE_AGE = 365*24*60*60 # 365 day
+
 ##########################################
 # generic options - visible on all pages #
 ##########################################
@@ -210,3 +212,15 @@ HELPDESK_FULL_FIRST_MESSAGE_FROM_EMAIL = getattr(settings, 'HELPDESK_FULL_FIRST_
 # (which gets stripped/corrupted otherwise)
 HELPDESK_ALWAYS_SAVE_INCOMING_EMAIL_MESSAGE = getattr(settings, "HELPDESK_ALWAYS_SAVE_INCOMING_EMAIL_MESSAGE", False)
 
+
+# * added by sia
+#################
+#  sms options  #
+#################
+
+KAVENEGAR_API_KEY = "6274466F7962416C65344646437948476949516348513D3D"
+KAVENEGAR_TICKETING_TEMPLATE_NAME = 'ticketing'
+
+NIVO_HELPDESK_DOMAIN = 'https://help.nivoapp.com'
+
+MAXIMUM_URL_CHARS = 7

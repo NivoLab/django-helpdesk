@@ -7,6 +7,7 @@ models.py - Model (and hence database) definitions. This is the core of the
             helpdesk structure.
 """
 
+from curses.ascii import US
 from django.contrib.auth.models import Permission
 from django.contrib.auth import get_user_model
 from django.contrib.contenttypes.models import ContentType
@@ -27,6 +28,7 @@ from markdown.extensions import Extension
 
 
 import uuid
+# from forms import User
 
 from rest_framework import serializers
 
@@ -443,6 +445,49 @@ def mk_secret():
     return str(uuid.uuid4())
 
 
+User = get_user_model()
+
+# * added by sia
+class UserToken(models.Model):    
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    x_token = models.TextField()
+    uid = models.TextField()
+
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+
+# * added by sia
+class ShorterLink(models.Model):
+    short_link = models.CharField(max_length=20, blank=False, null=False, unique=True)
+    long_link = models.TextField(blank=False, null=False)
+    long_link_json = models.JSONField(blank=False, null=False)
+    expire_at = models.DateTimeField(blank=True, null=True)
+
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    @staticmethod
+    def generate_short_link():
+        """
+        Creates a random string with the predetermined size
+        """
+
+        from string import ascii_letters, digits
+        from random import choice
+
+        # Try toget the value from the settings module
+        SIZE = getattr(helpdesk_settings, "MAXIMUM_URL_CHARS", 7)
+
+        chars = ascii_letters + digits
+        sl = "".join([choice(chars) for _ in range(SIZE)])
+
+        while ShorterLink.objects.filter(short_link = sl).exists():
+            sl = ShorterLink.generate_short_link()
+
+        return sl
+
+
 class Ticket(models.Model):
     """
     To allow a ticket to be entered as quickly as possible, only the
@@ -726,22 +771,50 @@ class Ticket(models.Model):
         from django.contrib.sites.models import Site
         from django.core.exceptions import ImproperlyConfigured
         from django.urls import reverse
+        
+        # * added by sia
+        # try:
+        #     site = Site.objects.get_current()
+        # except ImproperlyConfigured:
+        #     site = Site(domain='configure-django-sites.com')
+        # if helpdesk_settings.HELPDESK_USE_HTTPS_IN_EMAIL_LINK:
+        #     protocol = 'https'
+        # else:
+        #     protocol = 'http'
+        
+        # site
+        # site = helpdesk_settings.NIVO_HELPDESK_DOMAIN
+
+        # x_token and user_id
         try:
-            site = Site.objects.get_current()
-        except ImproperlyConfigured:
-            site = Site(domain='configure-django-sites.com')
-        if helpdesk_settings.HELPDESK_USE_HTTPS_IN_EMAIL_LINK:
-            protocol = 'https'
-        else:
-            protocol = 'http'
-        return u"%s://%s%s?ticket=%s&email=%s&key=%s" % (
-            protocol,
-            site.domain,
-            reverse('helpdesk:public_view'),
-            self.ticket_for_url,
-            self.submitter_email,
-            self.secret_key
-        )
+            usertoken = UserToken.objects.get(user__email=self.submitter_email)
+        except UserToken.DoesNotExist:
+            return None
+        
+        # return u"%s://%s%s?ticket=%s&email=%s&key=%s" % (
+        # return u"%s%s?ticket=%s&email=%s&key=%s&x_token=%s&user_id=%s" % (
+        # protocol,
+        # site.domain,
+        # site,
+        # reverse('helpdesk:public_view'),
+        result = {
+            'link': u"ticket=%s&email=%s&key=%s&x_token=%s&user_id=%s" % (
+                self.ticket_for_url,
+                self.submitter_email,
+                self.secret_key,
+                usertoken.x_token,
+                usertoken.uid
+            ),
+            'json': {
+                'ticket':self.ticket_for_url,
+                'email': self.submitter_email,
+                'key': self.secret_key,
+                'x_token': usertoken.x_token,
+                'user_id': usertoken.uid
+            }
+        }
+
+        return result
     ticket_url = property(_get_ticket_url)
 
     def _get_staff_url(self):
@@ -889,6 +962,7 @@ class Ticket(models.Model):
                 if not created:
                     cfv.value = convert_value(value)
                     cfv.save()
+
 
 
 class FollowUpManager(models.Manager):

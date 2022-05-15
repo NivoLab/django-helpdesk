@@ -33,7 +33,7 @@ from helpdesk.serializers import TicketListSerializer
 import helpdesk.views.staff as staff
 import helpdesk.views.abstract_views as abstract_views
 from helpdesk.lib import text_is_spam
-from helpdesk.models import KBItem, Ticket, Queue, UserSettings
+from helpdesk.models import KBItem, Ticket, Queue, UserSettings, ShorterLink
 from helpdesk.user import huser_from_request
 
 logger = logging.getLogger(__name__)
@@ -185,9 +185,34 @@ def search_for_ticket(request, error_message=None):
 
 @protect_view
 def view_ticket(request):
-    ticket_req = request.GET.get('ticket', None)
-    email = request.GET.get('email', None)
-    key = request.GET.get('key', '')
+
+    # * added by sia >>>>
+    
+    sl = request.GET.get('sl', None)
+    
+    # if this boolean is true its means ther is no short link and
+    # we should get params from request
+    default_operation = True
+    
+    if sl is not None:
+        try:
+            link = ShorterLink.objects.get(short_link=sl)
+            default_operation = False
+        except ObjectDoesNotExist:
+            default_operation = True
+                
+    if default_operation:
+        ticket_req = request.GET.get('ticket', None)
+        email = request.GET.get('email', None)
+        key = request.GET.get('key', '')
+    else:
+        # default opt is false its means that we
+        # should get link params from short link
+        ticket_req = link.long_link_json.get('ticket', None)
+        email = link.long_link_json.get('email', None)
+        key = link.long_link_json.get('key', '')
+
+    # * added by sia <<<<
 
     if not (ticket_req and email):
         if ticket_req is None and email is None:
@@ -248,6 +273,7 @@ def change_language(request):
     return render(request, 'helpdesk/public_change_language.html', {'next': return_to})
 
 
+# * added by sia
 def email_ticket_list(request):
     """send list of users tickets"""
 
@@ -274,7 +300,7 @@ def email_ticket_list(request):
         'result': tk,
     })
 
-
+# * added by sia
 def test_data(request):
     try:
         q = Queue(

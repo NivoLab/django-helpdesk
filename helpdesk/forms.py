@@ -17,11 +17,11 @@ from django.contrib.auth import get_user_model
 from django.utils import timezone
 
 from helpdesk.lib import safe_template_context, process_attachments, convert_value
-from helpdesk.models import (Ticket, Queue, FollowUp, IgnoreEmail, TicketCC,
+from helpdesk.models import (Ticket, Queue, FollowUp, IgnoreEmail, TicketCC, ShorterLink,
                              CustomField, TicketCustomFieldValue, TicketDependency, UserSettings)
 from helpdesk import settings as helpdesk_settings
 from helpdesk.settings import CUSTOMFIELD_TO_FIELD_DICT, CUSTOMFIELD_DATETIME_FORMAT, \
-    CUSTOMFIELD_DATE_FORMAT, CUSTOMFIELD_TIME_FORMAT
+    CUSTOMFIELD_DATE_FORMAT, CUSTOMFIELD_TIME_FORMAT, KAVENEGAR_API_KEY, KAVENEGAR_TICKETING_TEMPLATE_NAME
 
 if helpdesk_settings.HELPDESK_KB_ENABLED:
     from helpdesk.models import (KBItem)
@@ -215,23 +215,24 @@ class AbstractTicketForm(CustomFieldMixin, forms.Form):
                     widget=forms.Select(attrs={'class': 'form-control'}),
                     required=False,
                     label=_('Knowledge Base Item'),
-                    choices=[(kbi.pk, kbi.title) for kbi in KBItem.objects.filter(category=kbcategory.pk, enabled=True)],
+                    choices=[(kbi.pk, kbi.title)
+                             for kbi in KBItem.objects.filter(category=kbcategory.pk, enabled=True)],
                 )
 
     # * added by sia
     def clean_attachment(self, *args, **kwargs):
         import os
-        
+
         my_file = self.cleaned_data.get("attachment")
         if not my_file:
             return my_file
         # extentions validation
         ext = os.path.splitext(my_file.name)[1]  # [0] returns path+filename
-        valid_extensions = ['.txt', '.pdf', '.doc', '.docx', '.odt', '.jpg', '.png', '.eml','.mp4', '.gif', '.mkv']
+        valid_extensions = ['.txt', '.pdf', '.doc', '.docx', '.odt', '.jpg', '.png', '.eml', '.mp4', '.gif', '.mkv']
 
         if not ext.lower() in valid_extensions:
             raise forms.ValidationError('Unsupported file extension.')
-        
+
         # file size validation
         # file size list (megabyte to byte)
         size = {
@@ -244,10 +245,11 @@ class AbstractTicketForm(CustomFieldMixin, forms.Form):
             '500MB': 524288000,
         }
 
-        filesize= my_file.size
-        accepted_size = size['50MB']
+        filesize = my_file.size
+        accepted_size = size['10MB']
         if filesize > accepted_size:
-            raise ValidationError("The maximum file size that can be uploaded is {} MB".format(int(accepted_size/1024/1024)))
+            raise ValidationError("The maximum file size that can be uploaded is {} MB".format(
+                int(accepted_size/1024/1024)))
 
         return my_file
 
@@ -332,6 +334,58 @@ class AbstractTicketForm(CustomFieldMixin, forms.Form):
             files=files,
         )
 
+    @staticmethod
+    def _send_sms(ticket, token):
+        from kavenegar import KavenegarAPI, APIException, HTTPException
+
+        ticketsent_tmp = 'ticketsent'
+        ticketreply_tmp = 'ticketreply'
+
+        # add first token text
+        token_text = ''
+        template_name = ''
+        if token == 'update':
+            # generate ticket usrl
+            url = ticket.ticket_url
+
+            # make url short
+            sl = ShorterLink.generate_short_link()
+            
+            # create short link
+            ShorterLink.objects.create(
+                short_link = sl,
+                long_link=url['link'],
+                long_link_json=url['json']
+            )        
+            token_text = sl
+            template_name = ticketreply_tmp
+        elif token == 'create':
+            template_name = ticketsent_tmp
+            token_text = '.'
+
+        # return True
+        submitter_phone = (ticket.submitter_email)
+        if '@' in submitter_phone:
+            submitter_phone = submitter_phone.split('@')[0]
+
+        # KAVENEGAR_API_KEY = "6274466F7962416C65344646437948476949516348513D3D"
+        # KAVENEGAR_TICKETING_TEMPLATE_NAME = 'ticketing'
+
+        try:
+            api = KavenegarAPI(KAVENEGAR_API_KEY)
+            params = {
+                'token': token_text,
+                'receptor': submitter_phone,
+                'template': template_name,
+                'type': 'sms'
+            }
+            response = api.verify_lookup(params)
+            print(response)
+        except APIException as e:
+            print(e)
+        except HTTPException as e:
+            print(e)
+
 
 class TicketForm(AbstractTicketForm):
     """
@@ -400,11 +454,12 @@ class TicketForm(AbstractTicketForm):
         followup.save()
 
         files = self._attach_files_to_follow_up(followup)
-        self._send_messages(ticket=ticket,
-                            queue=queue,
-                            followup=followup,
-                            files=files,
-                            user=user)
+        # self._send_messages(ticket=ticket,
+        #                     queue=queue,
+        #                     followup=followup,
+        #                     files=files,
+        #                     user=user)
+        self._send_sms(ticket=ticket, token='staff')
         return ticket
 
 
@@ -488,10 +543,11 @@ class PublicTicketForm(AbstractTicketForm):
         followup.save()
 
         files = self._attach_files_to_follow_up(followup)
-        self._send_messages(ticket=ticket,
-                            queue=queue,
-                            followup=followup,
-                            files=files)
+        # self._send_messages(ticket=ticket,
+        #                     queue=queue,
+        #                     followup=followup,
+        #                     files=files)
+        self._send_sms(ticket=ticket, token='public')
         return ticket
 
 

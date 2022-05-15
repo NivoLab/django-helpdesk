@@ -8,6 +8,7 @@ class TokenAuthMiddleware:
         self.get_response = get_response
 
     def __call__(self, request):
+
         if request.path.startswith(('/admin/',)) or request.user.is_authenticated:
             response = self.get_response(request)
             return response
@@ -15,6 +16,22 @@ class TokenAuthMiddleware:
         # get x-token and user_id from params
         x_token = request.GET.get('x_token', None)
         user_id = request.GET.get('user_id', None)
+
+        # check if link is shorter or not
+        sl = request.GET.get('sl', None)
+
+        if sl is not None:
+            from helpdesk.models import ShorterLink
+            from django.core.exceptions import ObjectDoesNotExist
+
+            try:
+                link = ShorterLink.objects.get(short_link=sl)
+            except ObjectDoesNotExist:
+                return redirect(REDIRECET_URL)
+            
+            x_token = link.long_link_json['x_token']
+            user_id = link.long_link_json['user_id']
+        
            
         # check if x-token exist
         if x_token is None:
@@ -55,6 +72,8 @@ class TokenAuthMiddleware:
 
         # check if user loged in or log in the user
         from django.contrib.auth import get_user_model, login
+        from helpdesk.models import UserToken
+
         User = get_user_model()
         
         if not request.user.is_authenticated:
@@ -67,6 +86,9 @@ class TokenAuthMiddleware:
             u = User.objects.get_or_create(email=email, username=username)[0]
             u.set_password(password)
             u.save()
+
+            # get or create usertoken
+            UserToken.objects.get_or_create(user=u, x_token=x_token, uid=user_id)
 
             # login the user
             login(request, u)

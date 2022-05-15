@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.utils.translation import ugettext_lazy as _
-from helpdesk.models import Queue, Ticket, FollowUp, PreSetReply
+from helpdesk.models import Queue, Ticket, FollowUp, PreSetReply, ShorterLink
 from helpdesk.models import EscalationExclusion, EmailTemplate
 from helpdesk.models import TicketChange, KBIAttachment, FollowUpAttachment, IgnoreEmail
 from helpdesk.models import CustomField
@@ -103,3 +103,9 @@ class IgnoreEmailAdmin(admin.ModelAdmin):
 
 admin.site.register(PreSetReply)
 admin.site.register(EscalationExclusion)
+
+
+# * added by sia
+@admin.register(ShorterLink)
+class ShortLinkAdmin(admin.ModelAdmin):
+    list_display = ('short_link', 'long_link')

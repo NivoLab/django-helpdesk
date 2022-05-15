@@ -781,8 +781,12 @@ def update_ticket(request, ticket_id, public=False):
 
     # * added by sia
     if is_helpdesk_staff(request.user):
+        from helpdesk.forms import AbstractTicketForm
+        AbstractTicketForm._send_sms(ticket, 'update')
+
         redirect_url = reverse('helpdesk:list')
         return HttpResponseRedirect(redirect_url)
+    
     # return return_to_ticket(request.user, helpdesk_settings, ticket)
     print("1 view ticket test for reply")
     redirect_url = reverse('helpdesk:user_ticket_list')
