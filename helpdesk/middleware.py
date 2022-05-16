@@ -9,7 +9,7 @@ class TokenAuthMiddleware:
 
     def __call__(self, request):
 
-        if request.path.startswith(('/admin/',)) or request.user.is_authenticated:
+        if request.path.startswith(('/admin/','/login/')) or request.user.is_authenticated:
             response = self.get_response(request)
             return response
         
