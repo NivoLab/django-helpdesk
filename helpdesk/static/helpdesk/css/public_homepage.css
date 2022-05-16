@@ -426,9 +426,6 @@ textarea::placeholder {
   color      : #a3a3a3;
   font-family: "IRANSansWeb";
 }
-#loader-section {
-  display        : none;
-}
 
 .loader {
   border       : 16px solid #f3f3f3;
@@ -447,6 +444,9 @@ textarea::placeholder {
   100% {
     transform: rotate(360deg);
   }
+}
+#loader-section {
+  display: none;
 }
 .form-control {
   text-align   : right !important;
