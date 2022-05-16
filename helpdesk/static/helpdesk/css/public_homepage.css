@@ -428,6 +428,7 @@ textarea::placeholder {
 }
 
 .form-control {
+  text-align: right;
   position     : relative;
   margin       : 20px 0px;
   min-width    : 100%;

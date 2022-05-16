@@ -60,6 +60,20 @@
       {% if ticket.followup_set.public_followups %} 
       {% load ticket_to_link %} 
       {%for followup in ticket.followup_set.public_followups reversed %}
+      {% if forloop.last %}
+      <div class="followup well">
+        <div class="ticketResive">
+          <p class="ticketMsg">
+            {{followup.comment|force_escape|urlizetrunc:50|num_to_link|linebreaksbr}}
+          </p>
+          <div class="ticketinfo">
+            <div class="ticketInfoHoler">
+              <img src="../../static/helpdesk/images/Time.svg" alt="Time" />
+              <p>{{ followup.date|naturaltime }}</p>
+            </div>
+          </div>
+        </div>
+      {% else %}
       {% if followup.user%}
         <div class="ticketSend">
           <p class="ticketMsg">
@@ -89,17 +103,13 @@
               {{followup.comment|force_escape|urlizetrunc:50|num_to_link|linebreaksbr}}
             </p>
             <div class="ticketinfo">
-              <!-- <div class="ticketInfoHoler">
-                <img src="../../static/helpdesk/images/person.svg" alt="Person" />
-                <p>{{ followup.user }}</p>
-              </div> -->
               <div class="ticketInfoHoler">
                 <img src="../../static/helpdesk/images/Time.svg" alt="Time" />
                 <p>{{ followup.date|naturaltime }}</p>
               </div>
             </div>
           </div>
-         {% endif %}
+         {% endif %}{% endif %}
       {% endfor %} 
       {% endif %}
     </div>
