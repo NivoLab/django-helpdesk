@@ -33,6 +33,10 @@
         تایید
     </button>
 </div>
+<div id="loader-section" class="closePart">
+    <div class="loader"></div>
+    <p>لطفا منتظر بمانید ...</p>
+</div>
 {% else %}
 <p>{% trans "Public ticket submission is disabled. Please contact the administrator for assistance." %}</p>
 {% endif %}
@@ -40,6 +44,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 <script>
     $("form").on("submit", function (e) {
+        document.getElementById("loader-section").style.display = "flex";
             const formData = new FormData(document.querySelector('form'))
             $.ajax({
                 url: window.location.url,
@@ -47,11 +52,13 @@
                 data: formData, contentType: false,
                 processData : false,
                 success: function (res) {
+                    console.log(res);
                     if (res.error) {
                         console.log(res)
                         alert("خطایی پیش آمده لطفا دوباره تلاش کنید .")
                     } else {
                         console.log('Success:', res);
+                        document.getElementById("loader-section").style.display = "none";
                         document.getElementById("ok").style.display = "flex";
                     }
                 },
