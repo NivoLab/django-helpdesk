@@ -40,6 +40,9 @@
             <input type="file" name="attachment" id="file0" accept= '.txt,.pdf,.doc,.docx,.odt,.jpg,.png,.eml,.mp4,.gif,.mkv'>
           </div>
           </div>
+          <p id="alert" style="color: red;"> فقط فایل هایی با فرمت txt ، pdf ، doc ، docs ، odt ، jpg ، png ، eml ، mp4 ، gif و
+            mkv و با حجم کمتر از 10 مگابایت
+            پذیرفته میشود.</p>
         <div class="btns">
       <button type="submit" class="btn">
         <img src="../../static/helpdesk/images/fluent_arrow-reply-48-regular.svg" alt="reply" /><span class="btnText">ارسال پاسخ
@@ -133,6 +136,7 @@
   const supportedExtensions = ['txt','pdf','doc','docx','odt','jpg','png','eml','mp4','gif','mkv'];
 
     const handleChange = ({ target }) => {
+      document.getElementById("alert").style.display = "none";
       const path = target.value.split('.');
       const extension = `${path[path.length - 1]}`;
 
@@ -140,7 +144,8 @@
 
       if (supportedExtensions.includes(extension)) {
         if (target.files[0].size > 10*1024*1024 ){
-          alert("فقط فایل هایی با فرمت txt ، pdf ، doc ، docs ، odt ، jpg ، png ، eml ، mp4 ، gif و mkv  و با حجم کمتر از 10 مگابایت پذیرفته میشود.")
+          document.getElementById("alert").style.display = "block";
+          // alert("فقط فایل هایی با فرمت txt ، pdf ، doc ، docs ، odt ، jpg ، png ، eml ، mp4 ، gif و mkv  و با حجم کمتر از 10 مگابایت پذیرفته میشود.")
           target.value = '';
         }
       } else {
