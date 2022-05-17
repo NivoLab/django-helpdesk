@@ -580,7 +580,9 @@ textarea::placeholder {
   overflow: hidden;
   margin  : 0
 }
-
+select option{
+  text-align: right;
+}
 @media (max-width: 600px) {
   .table tr {
     border       : 1px solid #ECECEC;
