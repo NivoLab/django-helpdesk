@@ -161,7 +161,7 @@ class AbstractTicketForm(CustomFieldMixin, forms.Form):
     "PublicTicketForm". This Form is not intended to be used directly.
     """
     queue = forms.ChoiceField(
-        widget=forms.Select(attrs={'class': 'form-control'}),
+        widget=forms.Select(attrs={'class': 'form-control', 'style': 'text-align:right;','dir' :'rtl' }),
         label="",
         required=True,
         choices=()
@@ -198,7 +198,8 @@ class AbstractTicketForm(CustomFieldMixin, forms.Form):
     # )
 
     attachment = forms.FileField(
-        widget=forms.FileInput(attrs={'class': 'form-control-file', 'placeholder': 'آپلود عکس'}),
+        widget=forms.FileInput(attrs={'class': 'form-control-file', 'placeholder': 'آپلود عکس',
+                               'accept': '.txt,.pdf,.doc,.docx,.odt,.jpg,.png,.eml,.mp4,.gif,.mkv'}),
         required=False,
         label="",
         help_text="",
