@@ -8,7 +8,8 @@
 {% endif %}
 <form role="form">
     {% csrf_token %}
-    {{ form.queue }}
+    <div dir="rtl" style="text-align: right;direction: rtl;">
+    {{ form.queue }}</div>
     {{ form.title }}
     {{ form.body }}
     {{ form.priority }}
