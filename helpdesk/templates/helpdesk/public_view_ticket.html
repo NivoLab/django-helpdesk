@@ -37,7 +37,7 @@
           <div class="fileInside">
             <img src="../../static/helpdesk/images/Paperclip.svg" />
             <p>آپلود عکس</p>
-            <input type="file" name="attachment" id="file0">
+            <input type="file" name="attachment" id="file0" accept= '.txt,.pdf,.doc,.docx,.odt,.jpg,.png,.eml,.mp4,.gif,.mkv'>
           </div>
           </div>
         <div class="btns">
@@ -114,8 +114,44 @@
       {% endif %}
     </div>
   </div>
-<script>document.getElementsByTagName("form").submit(function (e) {
-    $('#ok').hide();
-    e.preventDefault();     
-  });</script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script>
+  $(document).ready(() => {
+      $("form").on("submit", function (e) {
+        var parent = document.createElement("div");
+        parent.id = "loader-section";
+        parent.className = "closePart";
+        var loader = document.createElement("div");
+        loader.className = "loader";
+        var p = document.createElement("p");
+        p.innerHTML = "لطفا منتظر بمانید ...";
+        parent.appendChild(loader);
+        parent.appendChild(p);
+        $('body').append(parent);
+      });
+    
+  const supportedExtensions = ['txt','pdf','doc','docx','odt','jpg','png','eml','mp4','gif','mkv'];
+
+    const handleChange = ({ target }) => {
+      const path = target.value.split('.');
+      const extension = `${path[path.length - 1]}`;
+
+      console.log(path , extension)
+
+      if (supportedExtensions.includes(extension)) {
+        if (target.files[0].size > 10*1024*1024 ){
+          alert("فقط فایل هایی با فرمت txt ، pdf ، doc ، docs ، odt ، jpg ، png ، eml ، mp4 ، gif و mkv  و با حجم کمتر از 10 مگابایت پذیرفته میشود.")
+          target.value = '';
+        }
+      } else {
+        // TODO: show "invalid file type" message to user
+
+        // reset value
+        target.value = '';
+      }
+    }
+
+    $('#file0').on('change', handleChange)
+  })
+</script>
 {% endblock %}
