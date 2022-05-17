@@ -796,7 +796,7 @@ def update_ticket(request, ticket_id, public=False):
     
     # return return_to_ticket(request.user, helpdesk_settings, ticket)
     print("1 view ticket test for reply")
-    redirect_url = reverse('helpdesk:user_ticket_list', kwargs={'submit':False})
+    redirect_url = '%s?submit=true' % reverse('helpdesk:user_ticket_list')
     return HttpResponseRedirect(redirect_url)
 
 
