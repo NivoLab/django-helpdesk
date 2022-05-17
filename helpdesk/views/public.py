@@ -126,7 +126,8 @@ class BaseCreateTicketView(abstract_views.AbstractCreateTicketMixin, FormView):
                 # return render(request, template_url, {
                 #     'result': tk, 'submit': True
                 # })
-                return email_ticket_list(self.request)
+                redirect_url = reverse('helpdesk:user_ticket_list', kwargs={'submit':False})
+                return HttpResponseRedirect(redirect_url)
                 # return HttpResponseRedirect('%s?ticket=%s&email=%s&key=%s' % (
                 #     reverse('helpdesk:public_view'),
                 #     ticket.ticket_for_url,
@@ -295,7 +296,7 @@ def list_of_tickets(submitter_email):
     return tk
 
 # * added by sia
-def email_ticket_list(request):
+def email_ticket_list(request, submit=False):
     """send list of users tickets"""
 
     template_url = 'helpdesk/public_ticket_list.html'
@@ -309,7 +310,7 @@ def email_ticket_list(request):
     print(tk)
     # return JsonResponse({'error': True, 'result': tk})
     return render(request, template_url, {
-        'result': tk, 'submit': False
+        'result': tk, 'submit': submit
     })
 
 # * added by sia

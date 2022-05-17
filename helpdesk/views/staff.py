@@ -652,6 +652,13 @@ def update_ticket(request, ticket_id, public=False):
     if request.FILES:
         files = process_attachments(f, request.FILES.getlist('attachment'))
 
+        # validation in file size and extention
+        valid = True
+        """"""
+
+        if not valid:
+            return JsonResponse({'message': 'file size or extention is not ok'}, status=400)
+
     if title and title != ticket.title:
         c = TicketChange(
             followup=f,
@@ -789,7 +796,7 @@ def update_ticket(request, ticket_id, public=False):
     
     # return return_to_ticket(request.user, helpdesk_settings, ticket)
     print("1 view ticket test for reply")
-    redirect_url = reverse('helpdesk:user_ticket_list')
+    redirect_url = reverse('helpdesk:user_ticket_list', kwargs={'submit':False})
     return HttpResponseRedirect(redirect_url)
 
 

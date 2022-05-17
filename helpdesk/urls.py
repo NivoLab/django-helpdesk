@@ -176,7 +176,7 @@ urlpatterns += [
         name='home'),
 
     # * added by sia
-    url('tickets/list',
+    url(r'^tickets/list/(?P<submit>(True|False))/$',
         public.email_ticket_list,
         name='user_ticket_list'),
 
