@@ -118,7 +118,15 @@ class BaseCreateTicketView(abstract_views.AbstractCreateTicketMixin, FormView):
             ticket = form.save(user=self.request.user if self.request.user.is_authenticated else None)
             try:
                 # * added by sia
-                return JsonResponse({'error': False, 'message': 'ticket successfully created'}, status=200)
+                # return JsonResponse({'error': True, 'result': tk})
+                # template_url = 'helpdesk/public_ticket_list.html'
+
+                # tk = list_of_tickets(submitter_email=self.request.user.email)
+
+                # return render(request, template_url, {
+                #     'result': tk, 'submit': True
+                # })
+                return email_ticket_list(self.request)
                 # return HttpResponseRedirect('%s?ticket=%s&email=%s&key=%s' % (
                 #     reverse('helpdesk:public_view'),
                 #     ticket.ticket_for_url,
@@ -273,6 +281,19 @@ def change_language(request):
     return render(request, 'helpdesk/public_change_language.html', {'next': return_to})
 
 
+def list_of_tickets(submitter_email):
+    tickets = Ticket.objects.filter(submitter_email=submitter_email)
+
+    from helpdesk.serializers import TicketSerializer
+    tk=[]
+    
+    for ticket in tickets:
+        tk.append({
+            'ticket': TicketListSerializer(ticket).data,
+            'queue': ticket.queue.title
+        })
+    return tk
+
 # * added by sia
 def email_ticket_list(request):
     """send list of users tickets"""
@@ -283,21 +304,12 @@ def email_ticket_list(request):
     if not email:
         return JsonResponse({'error': True, 'message': 'email is none'})
     
-    tickets = Ticket.objects.filter(submitter_email=email)
-
-    from helpdesk.serializers import TicketSerializer
-    tk=[]
-    
-    for ticket in tickets:
-        tk.append({
-            'ticket': TicketListSerializer(ticket).data,
-            'queue': ticket.queue.title
-        })
+    tk = list_of_tickets(submitter_email=email)
 
     print(tk)
     # return JsonResponse({'error': True, 'result': tk})
     return render(request, template_url, {
-        'result': tk,
+        'result': tk, 'submit': False
     })
 
 # * added by sia
