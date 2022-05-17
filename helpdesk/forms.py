@@ -161,7 +161,7 @@ class AbstractTicketForm(CustomFieldMixin, forms.Form):
     "PublicTicketForm". This Form is not intended to be used directly.
     """
     queue = forms.ChoiceField(
-        widget=forms.Select(attrs={'class': 'form-control', 'style': 'text-align:right;', }),
+        widget=forms.Select(attrs={'class': 'form-control', 'style': 'text-align:right;','dir' :'rtl' }),
         label="",
         required=True,
         choices=()
