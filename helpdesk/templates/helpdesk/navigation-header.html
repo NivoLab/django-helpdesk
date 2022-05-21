@@ -11,8 +11,7 @@
 
       
 
-      {% if helpdesk_settings.HELPDESK_NAVIGATION_ENABLED and user.is_authenticated or user|is_helpdesk_staff %}
-      <!-- Navbar Search -->
+      <!-- {% if helpdesk_settings.HELPDESK_NAVIGATION_ENABLED and user.is_authenticated or user|is_helpdesk_staff %}
       <form class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0" id='searchform' method='get' action="{% url 'helpdesk:list' %}">
         <div class="input-group">
           <input type="text" class="form-control" name='q' size='15' placeholder='{% trans "Search..." %}' id='search_query' title='{% trans "Enter a keyword, or a ticket number to jump straight to that ticket." %}' aria-label="Search" aria-describedby="basic-addon2">
@@ -25,7 +24,7 @@
         </div>
         {% csrf_token %}
       </form>
-      {% endif %}
+      {% endif %} -->
       <!-- Navbar -->
       <ul class="navbar-nav mr-md-0">
       {% if helpdesk_settings.HELPDESK_NAVIGATION_ENABLED and user.is_authenticated or user|is_helpdesk_staff %}

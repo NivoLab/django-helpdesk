@@ -1106,7 +1106,7 @@ msgstr ""
 #: templates/helpdesk/base.html:22 templates/helpdesk/dashboard.html:99
 #: templates/helpdesk/rss_list.html:15
 msgid "Unassigned Tickets"
-msgstr ""
+msgstr "تیکت هایی که به هیچکدام از پشتیبان ها اختصاص داده نشده اند"
 
 #: templates/helpdesk/base.html:52 templates/helpdesk/public_base.html:6
 #: templates/helpdesk/public_base.html:18
@@ -1135,7 +1135,7 @@ msgstr ""
 
 #: templates/helpdesk/base.html:64 templates/helpdesk/system_settings.html:6
 msgid "System Settings"
-msgstr ""
+msgstr "تنظیمات سیستم"
 
 #: templates/helpdesk/confirm_delete_saved_query.html:3
 #: templates/helpdesk/ticket_list.html:146
@@ -1205,7 +1205,7 @@ msgid ""
 "Welcome to your Helpdesk Dashboard! From here you can quickly see tickets "
 "submitted by you, tickets you are working on, and those tickets that have no"
 " owner."
-msgstr ""
+msgstr "به داشبورد  تیکتینگ خود خوش آمدید! اینجا می توانید بلیط های ارسال شده توسط خود، بلیط هایی که به شما اختصاص داده شده اند و بلیط هایی که به هیچکدام از پشتیبان ها اختصاص داده نشده اند را مشاهده کنید."
 
 #: templates/helpdesk/dashboard.html:14
 msgid "Helpdesk Summary"
@@ -1213,7 +1213,7 @@ msgstr ""
 
 #: templates/helpdesk/dashboard.html:36
 msgid "Current Ticket Stats"
-msgstr ""
+msgstr "آمار تیکت های موجود"
 
 #: templates/helpdesk/dashboard.html:37
 msgid "Average number of days until ticket is closed (all tickets): "
@@ -1258,15 +1258,15 @@ msgstr ""
 #: templates/helpdesk/dashboard.html:58 templates/helpdesk/dashboard.html:78
 #: templates/helpdesk/dashboard.html:124
 msgid "Last Update"
-msgstr ""
+msgstr "آخرین بروزرسانی"
 
 #: templates/helpdesk/dashboard.html:77
 msgid "Open Tickets assigned to you (you are working on this ticket)"
-msgstr ""
+msgstr "تیکت های بازی که به شما اختصاص داده شده اند"
 
 #: templates/helpdesk/dashboard.html:92
 msgid "You have no tickets assigned to you."
-msgstr ""
+msgstr "هیچ تیکتی به شما اختصاص داده نشده است"
 
 #: templates/helpdesk/dashboard.html:99
 msgid "(pick up a ticket if you start to work on it)"
@@ -1514,7 +1514,7 @@ msgstr ""
 
 #: templates/helpdesk/navigation.html:16 templates/helpdesk/navigation.html:64
 msgid "Dashboard"
-msgstr ""
+msgstr "داشبورد"
 
 #: templates/helpdesk/navigation.html:18
 msgid "New Ticket"
@@ -1542,7 +1542,7 @@ msgstr ""
 
 #: templates/helpdesk/navigation.html:73
 msgid "Logout"
-msgstr ""
+msgstr "خروج از حساب کاربری"
 
 #: templates/helpdesk/navigation.html:73
 #: templates/helpdesk/navigation-header.html:83
@@ -1648,7 +1648,7 @@ msgstr ""
 #: templates/helpdesk/report_output.html:3
 #: templates/helpdesk/report_output.html:16
 msgid "Reports &amp; Statistics"
-msgstr ""
+msgstr "گزارش ها و آمار"
 
 #: templates/helpdesk/report_index.html:9
 msgid "You haven't created any tickets yet, so you cannot run any reports."
@@ -1661,7 +1661,7 @@ msgstr ""
 #: templates/helpdesk/report_index.html:15
 #: templates/helpdesk/report_index.html:24
 msgid "by Priority"
-msgstr ""
+msgstr "بر اساس اولویت"
 
 #: templates/helpdesk/report_index.html:16
 msgid "by Queue"
@@ -1670,16 +1670,16 @@ msgstr ""
 #: templates/helpdesk/report_index.html:17
 #: templates/helpdesk/report_index.html:25
 msgid "by Status"
-msgstr ""
+msgstr "بر اساس وضعیت"
 
 #: templates/helpdesk/report_index.html:18
 #: templates/helpdesk/report_index.html:26
 msgid "by Month"
-msgstr ""
+msgstr "بر اساس ماه"
 
 #: templates/helpdesk/report_index.html:22
 msgid "Reports By Queue"
-msgstr ""
+msgstr "گزارش نوع تیکت ها"
 
 #: templates/helpdesk/report_index.html:27 views/staff.py:1049
 msgid "Days until ticket closed by Month"
@@ -1858,7 +1858,7 @@ msgstr ""
 #: templates/helpdesk/ticket_list.html:97
 #: templates/helpdesk/ticket_list.html:225
 msgid "Owner"
-msgstr ""
+msgstr "مالک"
 
 #: templates/helpdesk/ticket.html:182
 msgid "Unassign"
@@ -2059,16 +2059,16 @@ msgstr ""
 #: templates/helpdesk/ticket_list.html:67
 #: templates/helpdesk/ticket_list.html:79
 msgid "Sorting"
-msgstr ""
+msgstr "مرتب سازی"
 
 #: templates/helpdesk/ticket_list.html:71
 #: templates/helpdesk/ticket_list.html:139
 msgid "Keywords"
-msgstr ""
+msgstr "کلمه های کلیدی"
 
 #: templates/helpdesk/ticket_list.html:72
 msgid "Date Range"
-msgstr ""
+msgstr "محدوده زمانی"
 
 #: templates/helpdesk/ticket_list.html:100
 msgid "Reverse"
@@ -2076,7 +2076,7 @@ msgstr ""
 
 #: templates/helpdesk/ticket_list.html:102
 msgid "Ordering applied to tickets"
-msgstr ""
+msgstr "فیلتر هایی که الان بر روی بلیط ها اعمال شده است"
 
 #: templates/helpdesk/ticket_list.html:107
 msgid "Owner(s)"
@@ -2088,28 +2088,28 @@ msgstr ""
 
 #: templates/helpdesk/ticket_list.html:115
 msgid "Ctrl-Click to select multiple options"
-msgstr ""
+msgstr "برای انتخاب چندین گزینه Ctrl را نگه دارید"
 
 #: templates/helpdesk/ticket_list.html:120
 msgid "Queue(s)"
-msgstr ""
+msgstr "نوع تیکت"
 
 #: templates/helpdesk/ticket_list.html:121
 #: templates/helpdesk/ticket_list.html:127
 msgid "Ctrl-click to select multiple options"
-msgstr ""
+msgstr "برای انتخاب چندین گزینه Ctrl را نگه دارید"
 
 #: templates/helpdesk/ticket_list.html:126
 msgid "Status(es)"
-msgstr ""
+msgstr "وضعیت تیکت"
 
 #: templates/helpdesk/ticket_list.html:132
 msgid "Date (From)"
-msgstr ""
+msgstr "ار تاریخ"
 
 #: templates/helpdesk/ticket_list.html:133
 msgid "Date (To)"
-msgstr ""
+msgstr " تا تاریخ"
 
 #: templates/helpdesk/ticket_list.html:134
 msgid "Use YYYY-MM-DD date format, eg 2011-05-29"
@@ -2122,8 +2122,8 @@ msgid ""
 msgstr ""
 
 #: templates/helpdesk/ticket_list.html:144
-msgid "Apply Filter"
-msgstr ""
+msgid "Apply Filters"
+msgstr "اعمال فیلترها"
 
 #: templates/helpdesk/ticket_list.html:146
 #, python-format
@@ -2393,12 +2393,35 @@ msgstr ""
 
 #: views/staff.py:1031
 msgid "Queue by Priority"
-msgstr ""
+msgstr "نوع تیکت بر اساس اولویت"
 
 #: views/staff.py:1037
 msgid "Queue by Status"
-msgstr ""
+msgstr "نوع تیکت بر اساس وضعیت"
 
 #: views/staff.py:1043
 msgid "Queue by Month"
-msgstr ""
+msgstr "نوع تیکت بر اساس ماه"
+
+msgid "Table"
+msgstr "تیکت ها"
+msgid "Reports"
+msgstr "گزارش ها"
+msgid "All Tickets"
+msgstr "تیکت ها"
+msgid "Submitter"
+msgstr "ارسال کننده"
+msgid "Filters"
+msgstr "فیلترها"
+msgid "Query Selection"
+msgstr "انتخاب فیلترها"
+msgid "Add filter"
+msgstr "اضافه کردن فیلتر"
+msgid "Time spent"
+msgstr "زمان صرف شده"
+msgid "Generate Report"
+msgstr "گزارش جامع تیکت ها"
+msgid "No tickets in this range"
+msgstr "تیکتی در این بازه نیست"
+msgid "View Tickets"
+msgstr "مشاهده تیکت ها"

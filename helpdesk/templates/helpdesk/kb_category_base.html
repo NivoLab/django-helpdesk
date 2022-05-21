@@ -15,7 +15,7 @@
             </h5>
         </div>
     </div>
-    <div id="collapse{{item.id}}" class="collapse {% if item.id == selected_item %}show{% endif %}" role="region" aria-labelledby="header{{item.id}}" data-parent="#accordion">
+    <div id="collapse{{item.id}}" class="collapse {% if item.id == selected_item %}{% endif %}" role="region" aria-labelledby="header{{item.id}}" data-parent="#accordion">
         {% block card_body %}
         <div class="card-body">
             <p class="card-text">{{ item.question }}</p>

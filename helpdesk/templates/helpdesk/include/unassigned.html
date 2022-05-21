@@ -3,7 +3,7 @@
 <div class="card mb-3">
     <div class="card-header">
         <i class="fas fa-table"></i>
-        {% trans "Unassigned Tickets" %} {% trans "(pick up a ticket if you start to work on it)" %}
+        {% trans "Unassigned Tickets" %}
     </div>
     <div class="card-body">
         <div class="table-responsive">
@@ -25,7 +25,7 @@
                         <td>{{ ticket.queue }}</td>
                         <td><span title='{{ ticket.created|date:"DATETIME_FORMAT" }}'>{{ ticket.created|naturaltime }}</span></td>
                         <td class="text-center">
-                          <a href='{{ ticket.get_absolute_url }}?take'><button class='btn btn-success btn-sm'><i class="fas fa-hand-paper"></i>&nbsp;{% trans "Take" %}</button></a>
+                          <!-- <a href='{{ ticket.get_absolute_url }}?take'><button class='btn btn-success btn-sm'><i class="fas fa-hand-paper"></i>&nbsp;{% trans "Take" %}</button></a> -->
                           <a href='{% url 'helpdesk:delete' ticket.id %}?next=dashboard'><button class='btn btn-danger btn-sm'><i class="fas fa-trash"></i>&nbsp;{% trans "Delete" %}</button></a>
                         </td>
                     </tr>
@@ -36,7 +36,7 @@
             </table>
         </div>
     </div>
-    <div class="card-footer small text-muted">Listing {{ unassigned_tickets|length }} ticket(s).</div>
+    <div class="card-footer small text-muted">تعداد تیکت ها : {{ unassigned_tickets|length }}</div>
 </div>
 
 {% for kbitem in kbitems %}
@@ -77,7 +77,7 @@
             </table>
         </div>
     </div>
-    <div class="card-footer small text-muted">Listing {{ kbitem.unassigned_tickets|length }} ticket(s).</div>
+    <div class="card-footer small text-muted">تعداد تیکت ها : {{ kbitem.unassigned_tickets|length }}</div>
 </div>
 {% endif %}
 {% endfor %}

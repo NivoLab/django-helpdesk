@@ -35,9 +35,9 @@
     <div class="card">
         <div class="card-header">
             <ul class="nav nav-tabs">
-                <li class="nav-item" style="width: 200px;">
+                <!-- <li class="nav-item" style="width: 200px;">
                     {% trans "Query Results" %}:
-                </li>
+                </li> -->
                 <li class="nav-item">
                     <a class="nav-link active" href="#datatabletabcontents" id="datatabletabcontents-tab"
                        data-toggle="tab" role="tab" aria-controls="datatabletabcontents" aria-selected=true>
@@ -45,13 +45,13 @@
                         {% trans "Table" %}
                     </a>
                 </li>
-                <li class="nav-item">
+                <!-- <li class="nav-item">
                     <a class="nav-link" href="#timelinetabcontents" id="timelinetabcontents-tab" data-toggle="tab"
                        role="tab" aria-controls="timelinetabcontents" aria-selected=false>
                         <i class="fas fa-history"></i>
                         {% trans "Timeline" %}
                     </a>
-                </li>
+                </li> -->
             </ul>
         </div>
         <div class="card-body">
@@ -65,22 +65,22 @@
                                id="ticketTable" data-page-length='{{ default_tickets_per_page }}'>
                             <thead class="thead-light">
                             <tr>
-                                <th></th>
+                                <!-- <th>انتخاب</th> -->
                                 <th>{% trans "Ticket" %}</th>
                                 <th>{% trans "Priority" %}</th>
                                 <th>{% trans "Queue" %}</th>
                                 <th>{% trans "Status" %}</th>
                                 <th>{% trans "Created" %}</th>
                                 <th>{% trans "Due Date" %}</th>
-                                <th>{% trans "Owner" %}</th>
+                                <!-- <th>{% trans "Owner" %}</th> -->
                                 <th>{% trans "Submitter" %}</th>
                                 <th>{% trans "Time Spent" %}</th>
-                                <th>{% trans "KB item" %}</th>
+                                <!-- <th>{% trans "KB item" %}</th> -->
                             </tr>
                             </thead>
                         </table>
 
-                        <p>
+                        <!-- <p>
                             <label>{% trans "Select:" %}</label>
 
                             <button id="select_all_btn" type="button" class="btn btn-success btn-sm">
@@ -94,9 +94,9 @@
                             <button id='select_inverse_btn' type="button" class="btn btn-success btn-sm">
                                 <i class="fas fa-expand-arrows-alt"></i> {% trans "Invert" %}
                             </button>
-                        </p>
+                        </p> -->
 
-                        <p>
+                        <!-- <p>
                             <label for='id_mass_action'>{% trans "With Selected Tickets:" %}</label>
                             <select name='action' id='id_mass_action'>
                                 <option value='take'>{% trans "Take (Assign to me)" %}</option>
@@ -122,7 +122,7 @@
                             <button type="submit" class="btn btn-success btn-sm">
                                 <i class="fas fa-arrow-circle-right"></i> {% trans "Go" %}
                             </button>
-                        </p>
+                        </p> -->
                     </form>
                 </div>
                 <div class="tab-pane fade" id="timelinetabcontents" role="tabpanel" aria-labelledby="timelinetabcontents-tab">
@@ -145,7 +145,7 @@
                 <div class="card">
                     <div class="card-header" id="headingOne">
                         <h5 class="mb-0">
-                            <button class="btn btn-link btn-sm" type="button" data-toggle="collapse"
+                            <button class="btn btn-link btn-sm" type="button" data-toggle="collapse" style="color: white;"
                                     data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
                                 <i class="fas fa-filter"></i>
                                 {% trans "Filters" %}
@@ -166,9 +166,9 @@
                                         <option id="filterBuilderSelect-Sort" value="Sort"{% if query_params.sorting %} disabled{% endif %}>
                                             {% trans "Sorting" %}
                                         </option>
-                                        <option id="filterBuilderSelect-Owner" value="Owner"{% if query_params.filtering.assigned_to__id__in %} disabled{% endif %}>
+                                        <!-- <option id="filterBuilderSelect-Owner" value="Owner"{% if query_params.filtering.assigned_to__id__in %} disabled{% endif %}>
                                             {% trans "Owner" %}
-                                        </option>
+                                        </option> -->
                                         <option id="filterBuilderSelect-Queue" value="Queue"{% if query_params.filtering.queue__id__in %} disabled{% endif %}>
                                             {% trans "Queue" %}
                                         </option>
@@ -181,9 +181,9 @@
                                         <option id="filterBuilderSelect-Dates" value="Dates"{% if query_params.filtering.created__gte or query_params.filtering.created__lte %} disabled{% endif %}>
                                             {% trans "Date Range" %}
                                         </option>
-                                        <option id="filterBuilderSelect-KBItems" value="KBItems"{% if query_params.filtering.kbitem__in %} disabled{% endif %}>
+                                        <!-- <option id="filterBuilderSelect-KBItems" value="KBItems"{% if query_params.filtering.kbitem__in %} disabled{% endif %}>
                                             {% trans "Knowledge base items" %}
-                                        </option>
+                                        </option> -->
                                     </select>
                                 </div>
                             </form>
@@ -241,7 +241,7 @@
                     </div>
                 </div> <!-- end card -->
 
-                <div class="card">
+                <!-- <div class="card">
                     <div class="card-header" id="headingTwo">
                         <h5 class="mb-0">
                             <button class="btn btn-link collapsed btn-sm" type="button" data-toggle="collapse"
@@ -274,8 +274,7 @@
                             </form>
                         </div>
                     </div>
-                </div> <!-- end card -->
-
+                </div> --><!-- end card -->
                 {% if user_saved_queries %}
                     <div class="card">
                         <div class="card-header" id="headingThree">
@@ -353,17 +352,17 @@
                 dom: 'ltBp',
                 buttons: ["colvis"],
                 columns: [
-                    {
-                        data: "id",
-                        orderable: false,
-                        render: function (data, type, row, meta) {
-                            const pk = data;
-                            if (type === 'display') {
-                                data = "<input type='checkbox' name='ticket_id' value='" + pk + "' class='ticket_multi_select' />"
-                            }
-                            return data
-                        }
-                    },
+                    // {
+                    //     data: "id",
+                    //     orderable: false,
+                    //     render: function (data, type, row, meta) {
+                    //         const pk = data;
+                    //         if (type === 'display') {
+                    //             data = "<input type='checkbox' name='ticket_id' value='" + pk + "' class='ticket_multi_select' />"
+                    //         }
+                    //         return data
+                    //     }
+                    // },
                     {
                         data: "ticket",
                         render: function (data, type, row, meta) {
@@ -398,18 +397,18 @@
                     {data: "status"},
                     {data: "created"},
                     {data: "due_date", "visible": false},
-                    {
-                        data: "assigned_to",
-                        render: function (data, type, row, meta) {
-                            if (data !== "None") {
-                                return data;
-                            }
-                            return "";
-                        }
-                    },
+                    // {
+                    //     data: "assigned_to",
+                    //     render: function (data, type, row, meta) {
+                    //         if (data !== "None") {
+                    //             return data;
+                    //         }
+                    //         return "";
+                    //     }
+                    // },
                     {data: "submitter"},
                     {data: "time_spent", "visible": false},
-                    {data: "kbitem"},
+                    // {data: "kbitem"},
                 ]
             });
 

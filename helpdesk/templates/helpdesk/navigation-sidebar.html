@@ -15,7 +15,7 @@
             <span>{% trans "All Tickets" %}</span>
           </a>
         </li>
-        <li class="nav-item dropdown">
+        <!-- <li class="nav-item dropdown">
           <a style="text-align: right;" class="nav-link dropdown-toggle" href="#" id="ticketsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <i class="fas fa-fw fa-search"></i>
             <span>{% trans "Saved Queries" %}</span>
@@ -33,27 +33,27 @@
             <p class="dropdown-item small text-wrap">{% trans "No saved queries currently available. You can create one in the All Tickets page." %}</p>
             {% endif %}
           </div>
-        </li>
-        <li class="nav-item{% if 'submit' in request.path %} active{% endif %}">
+        </li> -->
+        <!-- <li class="nav-item{% if 'submit' in request.path %} active{% endif %}">
           <a style="text-align: right;" class="nav-link" href="{% url 'helpdesk:submit' %}">
             <i class="fas fa-fw fa-plus-circle"></i>
             <span>{% trans "New Ticket" %}</span>
           </a>
-        </li>
+        </li> -->
         <li class="nav-item{% if 'reports' in request.path %} active{% endif %}">
           <a style="text-align: right;" class="nav-link" href="{% url 'helpdesk:report_index' %}">
             <i class="fas fa-fw fa-chart-area"></i>
             <span>{% trans "Reports" %}</span>
           </a>
         </li>
-        {% if helpdesk_settings.HELPDESK_KB_ENABLED %}
+        <!-- {% if helpdesk_settings.HELPDESK_KB_ENABLED %}
         <li class="nav-item{% if 'kb' in request.path %} active{% endif %}">
           <a style="text-align: right;" class="nav-link" href="{% url 'helpdesk:kb_index' %}">
             <i class="fas fa-fw fa-database"></i>
             <span>{% trans "Knowledgebase" %}</span>
           </a>
         </li>
-        {% endif %}
+        {% endif %} -->
     {% else %}
         {# Public menu #}
         <li class="nav-item{% if request.path == '/' %} active{% endif %}">
