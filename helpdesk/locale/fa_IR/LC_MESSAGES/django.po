@@ -696,7 +696,7 @@ msgstr ""
 
 #: models.py:788
 msgid "HTML"
-msgstr ""
+msgstr "HTML"
 
 #: models.py:789
 msgid "The same context is available here as in plain_text, above."
@@ -916,15 +916,15 @@ msgstr ""
 
 #: models.py:1196
 msgid "Integer"
-msgstr ""
+msgstr "Integer"
 
 #: models.py:1197
 msgid "Decimal"
-msgstr ""
+msgstr "دسیمال"
 
 #: models.py:1198
 msgid "List"
-msgstr ""
+msgstr "لیست"
 
 #: models.py:1199
 msgid "Boolean (checkbox yes/no)"
@@ -932,7 +932,7 @@ msgstr ""
 
 #: models.py:1201
 msgid "Time"
-msgstr ""
+msgstr "زمان"
 
 #: models.py:1202
 msgid "Date & Time"
@@ -940,15 +940,15 @@ msgstr "ناریخ و زمان"
 
 #: models.py:1204
 msgid "URL"
-msgstr ""
+msgstr "URL"
 
 #: models.py:1205
 msgid "IP Address"
-msgstr ""
+msgstr "IP Address"
 
 #: models.py:1210
 msgid "Data Type"
-msgstr ""
+msgstr "Data Type"
 
 #: models.py:1212
 msgid "Allows you to restrict the data entered into this field"
@@ -1284,7 +1284,7 @@ msgstr ""
 #: templates/helpdesk/ticket_cc_list.html:23
 #: templates/helpdesk/ticket_list.html:262
 msgid "Delete"
-msgstr ""
+msgstr "حذف"
 
 #: templates/helpdesk/dashboard.html:114
 msgid "There are no unassigned tickets."
@@ -1616,7 +1616,7 @@ msgstr ""
 #: templates/helpdesk/public_view_ticket.html:13
 #: templates/helpdesk/ticket_desc_table.html:32
 msgid "Submitted On"
-msgstr ""
+msgstr "تاریخ ارسال تیکت"
 
 #: templates/helpdesk/public_view_ticket.html:35
 msgid "Tags"
@@ -1635,7 +1635,7 @@ msgstr ""
 #: templates/helpdesk/public_view_ticket.html:57
 #: templates/helpdesk/ticket.html:66
 msgid "Follow-Ups"
-msgstr ""
+msgstr "پیگیری ها"
 
 #: templates/helpdesk/public_view_ticket.html:65
 #: templates/helpdesk/ticket.html:100
@@ -1808,7 +1808,7 @@ msgstr ""
 
 #: templates/helpdesk/ticket.html:119
 msgid "Respond to this ticket"
-msgstr ""
+msgstr "به این تیکت پاسخ دهید"
 
 #: templates/helpdesk/ticket.html:126
 msgid "Use a Pre-set Reply"
@@ -1826,7 +1826,7 @@ msgstr ""
 
 #: templates/helpdesk/ticket.html:131
 msgid "Comment / Resolution"
-msgstr ""
+msgstr "پاسخ : "
 
 #: templates/helpdesk/ticket.html:133
 msgid ""
@@ -1874,7 +1874,7 @@ msgstr ""
 
 #: templates/helpdesk/ticket.html:207
 msgid "Update This Ticket"
-msgstr ""
+msgstr "ارسال پاسخ"
 
 #: templates/helpdesk/ticket_cc_add.html:3
 msgid "Add Ticket CC"
@@ -2177,11 +2177,11 @@ msgstr ""
 
 #: templates/helpdesk/ticket_list.html:240
 msgid "No Tickets Match Your Selection"
-msgstr ""
+msgstr "هیچ تیکتی با کوئری شما مطابقت ندارد"
 
 #: templates/helpdesk/ticket_list.html:247
 msgid "Previous"
-msgstr ""
+msgstr "قبلی"
 
 #: templates/helpdesk/ticket_list.html:251
 #, python-format
@@ -2190,11 +2190,11 @@ msgstr ""
 
 #: templates/helpdesk/ticket_list.html:255
 msgid "Next"
-msgstr ""
+msgstr "بعدی"
 
 #: templates/helpdesk/ticket_list.html:260
 msgid "Select:"
-msgstr ""
+msgstr "انتخاب :"
 
 #: templates/helpdesk/ticket_list.html:260
 msgid "None"
@@ -2273,7 +2273,7 @@ msgstr ""
 
 #: templates/helpdesk/registration/login.html:20
 msgid "Login"
-msgstr ""
+msgstr "ورود"
 
 #: views/feeds.py:39
 #, python-format
@@ -2425,3 +2425,7 @@ msgid "No tickets in this range"
 msgstr "تیکتی در این بازه نیست"
 msgid "View Tickets"
 msgstr "مشاهده تیکت ها"
+msgid "Edit"
+msgstr "ویرایش"
+msgid "entries"
+msgstr "تعداد"
