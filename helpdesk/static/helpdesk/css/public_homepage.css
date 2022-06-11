@@ -580,6 +580,26 @@ textarea::placeholder {
   overflow: hidden;
   margin  : 0
 }
+.parent {
+  position  : fixed;
+  top       : 0;
+  left      : 0;
+  bottom    : 0;
+  right     : 0;
+  width     : 100%;
+  height    : auto;
+  margin    : 0 !important;
+  text-align: center;
+}
+
+.nivo-blog {
+  border       : 0;
+  width        : 100%;
+  height       : 92%;
+  overflow-y   : scroll;
+  padding-right: 17px;
+  box-sizing   : content-box;
+}
 @media (max-width: 600px) {
   .table tr {
     border       : 1px solid #ECECEC;

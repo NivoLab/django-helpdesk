@@ -3,5 +3,38 @@
 {% block helpdesk_title %}{% trans "Ticket List" %}{% endblock %}
 
 {% block helpdesk_body %}
-<h1>Welcome to FAQ</h1>
+<div class="parent"><iframe class="nivo-blog"
+    src="https://blog.nivoapp.com/%d8%b3%d9%88%d8%a7%d9%84%d8%a7%d8%aa-%d9%85%d8%aa%d8%af%d8%a7%d9%88%d9%84-%d8%af%d8%b1-%d9%85%d9%88%d8%b1%d8%af-%d9%86%db%8c%d9%88%d9%8f/">Your
+    browser doesn't support iFrames.</iframe>
+  <button class="btn" id="support" style="color:white">تماس با پشتیبانی</button>
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script>
+  $(document).ready(() => {
+      var urlParams = new URLSearchParams(window.location.search);
+      var token = urlParams.get("x_token");
+      var id = urlParams.get("user_id");
+      urlParams.delete("x_token");
+      urlParams.delete("user_id");
+      if (!history.replaceState) {
+        return;
+      }
+      var searchString =
+        urlParams.toString().length > 0 ? "?" + urlParams.toString() : "";
+      var newUrl =
+        window.location.protocol +
+        "//" +
+        window.location.host +
+        window.location.pathname +
+        searchString +
+        window.location.hash;
+      history.replaceState(null, "", newUrl);
+      
+      const goToSupport = () => {
+        window.location.href = `/tickets/list?x_token=${token}&user_id=${id}`;
+      }
+
+    $('#support').on('click', goToSupport)
+  })
+</script>
 {% endblock %}

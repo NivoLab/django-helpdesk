@@ -118,6 +118,8 @@
         if (submit == 'true'){
             document.getElementById("ok").style.display = "flex";
             urlParams.delete("submit");
+            urlParams.delete("x_token");
+            urlParams.delete("user_id");
             if (!history.replaceState) {
                 return;
             }
@@ -134,6 +136,23 @@
 
         }else{
             document.getElementById("ok").style.display = "none";
+            
+            urlParams.delete("x_token");
+            urlParams.delete("user_id");
+            if (!history.replaceState) {
+                return;
+            }
+            var searchString =
+                urlParams.toString().length > 0 ? "?" + urlParams.toString() : "";
+            var newUrl =
+                window.location.protocol +
+                "//" +
+                window.location.host +
+                window.location.pathname +
+                searchString +
+                window.location.hash;
+            history.replaceState(null, "", newUrl);
+
         }
      })
         </script>
