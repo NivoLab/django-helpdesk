@@ -196,20 +196,20 @@ def search_for_ticket(request, error_message=None):
 def view_ticket(request):
 
     # * added by sia >>>>
-    
+
     sl = request.GET.get('sl', None)
-    
+
     # if this boolean is true its means ther is no short link and
     # we should get params from request
     default_operation = True
-    
+
     if sl is not None:
         try:
             link = ShorterLink.objects.get(short_link=sl)
             default_operation = False
         except ObjectDoesNotExist:
             default_operation = True
-                
+
     if default_operation:
         ticket_req = request.GET.get('ticket', None)
         email = request.GET.get('email', None)
@@ -286,8 +286,8 @@ def list_of_tickets(submitter_email):
     tickets = Ticket.objects.filter(submitter_email=submitter_email)
 
     from helpdesk.serializers import TicketSerializer
-    tk=[]
-    
+    tk = []
+
     for ticket in tickets:
         tk.append({
             'ticket': TicketListSerializer(ticket).data,
@@ -296,6 +296,8 @@ def list_of_tickets(submitter_email):
     return tk
 
 # * added by sia
+
+
 def email_ticket_list(request):
     """send list of users tickets"""
 
@@ -304,7 +306,7 @@ def email_ticket_list(request):
     email = request.user.email
     if not email:
         return JsonResponse({'error': True, 'message': 'email is none'})
-    
+
     tk = list_of_tickets(submitter_email=email)
 
     print(tk)
@@ -317,6 +319,8 @@ def email_ticket_list(request):
     })
 
 # * added by sia
+
+
 def test_data(request):
     try:
         q = Queue(
@@ -327,15 +331,22 @@ def test_data(request):
         q.save()
 
         t = Ticket(
-            title = 'aa',
+            title='aa',
             description='aa',
             queue=q,
             created=datetime.now(),
             submitter_email='09120535348@gmail.com',
         )
         t.save()
-        
+
         return JsonResponse({'message': 'successful'}, status=200)
     except Exception as e:
         print(e.__str__)
         return JsonResponse({'message': 'failed'}, status=400)
+
+
+# * added by sia
+def faq(request):
+    template_url = 'helpdesk/FAQ.html'
+
+    return render(request, template_url)
