@@ -83,15 +83,17 @@ class TokenAuthMiddleware:
             password = 'helpDesk-' + email
             
             # get or create the user
-            u = User.objects.get_or_create(email=email, username=username)[0]
-            u.set_password(password)
-            u.save()
+            user = User.objects.get_or_create(email=email, username=username)[0]
+            user.set_password(password)
+            user.save()
 
             # get or create usertoken
-            UserToken.objects.get_or_create(user=u, x_token=x_token, uid=user_id)
-
+            userToken = UserToken.objects.get_or_create(user=user, uid=user_id)[0]
+            userToken.x_token = x_token
+            userToken.save()
+            
             # login the user
-            login(request, u)
+            login(request, user)
         
         if not request.user.is_authenticated:
             return redirect(REDIRECET_URL)
