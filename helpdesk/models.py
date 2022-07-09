@@ -489,15 +489,15 @@ class ShorterLink(models.Model):
 
 # * added by sia
 class Log(models.Model):
-    where = models.CharField(max_length=500)
-    why = models.JSONField()
-    who = models.CharField(max_length=200)
+    location = models.CharField(max_length=500)
+    message = models.JSONField()
+    user = models.CharField(max_length=200)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
     @staticmethod
     def addLog(where, why, who):
-        Log.objects.create(where=where, why=why, who=who)
+        Log.objects.create(location=where, message=why, user=who)
 
 
 class Ticket(models.Model):
