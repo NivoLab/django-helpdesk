@@ -114,4 +114,4 @@ class ShortLinkAdmin(admin.ModelAdmin):
 # * added by sia
 @admin.register(Log)
 class LogAdmin(admin.ModelAdmin):
-    list_display = ('where', 'why', 'who', 'created_at')
+    list_display = ('location', 'message', 'user', 'created_at')
