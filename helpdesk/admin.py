@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.utils.translation import ugettext_lazy as _
-from helpdesk.models import Queue, Ticket, FollowUp, PreSetReply, ShorterLink, Log
+from helpdesk.models import Queue, Ticket, FollowUp, PreSetReply, ShorterLink, Log, UserToken
 from helpdesk.models import EscalationExclusion, EmailTemplate
 from helpdesk.models import TicketChange, KBIAttachment, FollowUpAttachment, IgnoreEmail
 from helpdesk.models import CustomField
@@ -115,3 +115,9 @@ class ShortLinkAdmin(admin.ModelAdmin):
 @admin.register(Log)
 class LogAdmin(admin.ModelAdmin):
     list_display = ('location', 'message', 'user', 'created_at')
+
+
+# * added by sia
+@admin.register(UserToken)
+class UserTokenAdmin(admin.ModelAdmin):
+    list_display = ('user',)
