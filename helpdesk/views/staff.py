@@ -51,7 +51,7 @@ from helpdesk.lib import (
 )
 from helpdesk.models import (
     Ticket, Queue, FollowUp, TicketChange, PreSetReply, FollowUpAttachment, SavedSearch,
-    IgnoreEmail, TicketCC, TicketDependency, UserSettings, CustomField, TicketCustomFieldValue,
+    IgnoreEmail, TicketCC, TicketDependency, UserSettings, CustomField, TicketCustomFieldValue, Log
 )
 from helpdesk import settings as helpdesk_settings
 if helpdesk_settings.HELPDESK_KB_ENABLED:
@@ -789,7 +789,13 @@ def update_ticket(request, ticket_id, public=False):
     # * added by sia
     if is_helpdesk_staff(request.user):
         from helpdesk.forms import AbstractTicketForm
-        AbstractTicketForm._send_sms(ticket, 'update')
+        try:
+            AbstractTicketForm._send_sms(ticket, 'update')
+        except Exception as e:
+            where = 'helpdesk.forms.TicketForm.save._send_sms'
+            who = ticket.submitter_email
+            why = json.dumps({'exception': str(e), 'ticket_url': ticket.ticket_url, })
+            Log.addLog(where=where, who=who, why=why)
 
         redirect_url = reverse('helpdesk:list')
         return HttpResponseRedirect(redirect_url)

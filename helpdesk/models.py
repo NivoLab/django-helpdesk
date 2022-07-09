@@ -487,6 +487,18 @@ class ShorterLink(models.Model):
 
         return sl
 
+# * added by sia
+class Log(models.Model):
+    where = models.CharField(max_length=500)
+    why = models.JSONField()
+    who = models.CharField(max_length=200)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    @staticmethod
+    def addLog(where, why, who):
+        Log.objects.create(where=where, why=why, who=who)
+
 
 class Ticket(models.Model):
     """
@@ -962,7 +974,6 @@ class Ticket(models.Model):
                 if not created:
                     cfv.value = convert_value(value)
                     cfv.save()
-
 
 
 class FollowUpManager(models.Manager):

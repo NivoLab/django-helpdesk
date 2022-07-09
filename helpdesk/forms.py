@@ -6,6 +6,7 @@ django-helpdesk - A Django powered ticket tracker for small enterprise.
 forms.py - Definitions of newforms-based forms for creating and maintaining
            tickets.
 """
+import json
 import logging
 from datetime import datetime, date, time
 
@@ -18,7 +19,7 @@ from django.utils import timezone
 
 from helpdesk.lib import safe_template_context, process_attachments, convert_value
 from helpdesk.models import (Ticket, Queue, FollowUp, IgnoreEmail, TicketCC, ShorterLink,
-                             CustomField, TicketCustomFieldValue, TicketDependency, UserSettings)
+                             CustomField, TicketCustomFieldValue, TicketDependency, UserSettings, Log)
 from helpdesk import settings as helpdesk_settings
 from helpdesk.settings import CUSTOMFIELD_TO_FIELD_DICT, CUSTOMFIELD_DATETIME_FORMAT, \
     CUSTOMFIELD_DATE_FORMAT, CUSTOMFIELD_TIME_FORMAT, KAVENEGAR_API_KEY, KAVENEGAR_TICKETING_TEMPLATE_NAME
@@ -352,12 +353,19 @@ class AbstractTicketForm(CustomFieldMixin, forms.Form):
             # make url short
             sl = ShorterLink.generate_short_link()
             
-            # create short link
-            ShorterLink.objects.create(
-                short_link = sl,
-                long_link=url['link'],
-                long_link_json=url['json']
-            )        
+            try:
+                # create short link
+                ShorterLink.objects.create(
+                    short_link = sl,
+                    long_link=url['link'],
+                    long_link_json=url['json']
+                )        
+            except Exception as e:
+                where = 'helpdesk.forms.AbstractTicketForm._send_sms'
+                who = ticket.submitter_email
+                why = json.dumps({'exception': str(e), 'ticket_url': url })
+                Log.addLog(where=where, who=who, why=why)
+            
             token_text = sl
             template_name = ticketreply_tmp
         elif token == 'create':
@@ -368,9 +376,6 @@ class AbstractTicketForm(CustomFieldMixin, forms.Form):
         submitter_phone = (ticket.submitter_email)
         if '@' in submitter_phone:
             submitter_phone = submitter_phone.split('@')[0]
-
-        # KAVENEGAR_API_KEY = "6274466F7962416C65344646437948476949516348513D3D"
-        # KAVENEGAR_TICKETING_TEMPLATE_NAME = 'ticketing'
 
         try:
             api = KavenegarAPI(KAVENEGAR_API_KEY)
@@ -460,7 +465,14 @@ class TicketForm(AbstractTicketForm):
         #                     followup=followup,
         #                     files=files,
         #                     user=user)
-        self._send_sms(ticket=ticket, token='create')
+        try:
+            self._send_sms(ticket=ticket, token='create')
+        except Exception as e:
+            where = 'helpdesk.forms.TicketForm.save._send_sms'
+            who = user.username
+            why = json.dumps({'exception': str(e), 'ticket_url': ticket.ticket_url, })
+            Log.addLog(where=where, who=who, why=why)
+
         return ticket
 
 
@@ -547,7 +559,13 @@ class PublicTicketForm(AbstractTicketForm):
         #                     queue=queue,
         #                     followup=followup,
         #                     files=files)
-        self._send_sms(ticket=ticket, token='create')
+        try:
+            self._send_sms(ticket=ticket, token='create')
+        except Exception as e:
+            where = 'helpdesk.forms.PublicTicketForm.save._send_sms'
+            who = user.username
+            why = json.dumps({'exception': str(e), 'ticket_url': ticket.ticket_url, })
+            Log.addLog(where=where, who=who, why=why)
         return ticket
 
 
