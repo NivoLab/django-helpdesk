@@ -58,6 +58,8 @@ pipelines:
                       - create
                       - --name
                       - django_helpdesk
+                      - --mount
+                      - source=helpdesk,target=/app
                       - --constraint
                       - "node.labels.type!=sg"
                       - --network
