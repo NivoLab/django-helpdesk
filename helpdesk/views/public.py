@@ -350,3 +350,4 @@ def faq(request):
     template_url = 'helpdesk/FAQ.html'
 
     return render(request, template_url)
+
