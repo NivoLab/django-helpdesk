@@ -19,7 +19,7 @@ def validate_file_extension(value):
     if hasattr(settings, 'VALID_EXTENSIONS'):
         valid_extensions = settings.VALID_EXTENSIONS
     else:
-        valid_extensions = ['.txt', '.pdf', '.doc', '.docx', '.odt', '.jpg', '.png', '.eml', '.mp4', '.gif', '.mkv']
+        valid_extensions = ['.txt', '.pdf', '.doc', '.docx', '.odt', '.jpg', '.png', '.eml', '.mp4', '.gif', '.mkv', '.nivo']
 
     if not ext.lower() in valid_extensions:
         raise ValidationError('Unsupported file extension.')
