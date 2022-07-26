@@ -230,7 +230,7 @@ class AbstractTicketForm(CustomFieldMixin, forms.Form):
             return my_file
         # extentions validation
         ext = os.path.splitext(my_file.name)[1]  # [0] returns path+filename
-        valid_extensions = ['.txt', '.pdf', '.doc', '.docx', '.odt', '.jpg', '.png', '.eml', '.mp4', '.gif', '.mkv']
+        valid_extensions = ['.txt', '.pdf', '.doc', '.docx', '.odt', '.jpg', '.png', '.eml', '.mp4', '.gif', '.mkv', '.nivo']
 
         if not ext.lower() in valid_extensions:
             raise forms.ValidationError('Unsupported file extension.')
@@ -248,7 +248,7 @@ class AbstractTicketForm(CustomFieldMixin, forms.Form):
         }
 
         filesize = my_file.size
-        accepted_size = size['10MB']
+        accepted_size = size['20MB']
         if filesize > accepted_size:
             raise ValidationError("The maximum file size that can be uploaded is {} MB".format(
                 int(accepted_size/1024/1024)))
