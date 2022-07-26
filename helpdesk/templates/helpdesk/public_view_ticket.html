@@ -37,10 +37,10 @@
           <div class="fileInside">
             <img src="../../static/helpdesk/images/Paperclip.svg" />
             <p>آپلود عکس</p>
-            <input type="file" name="attachment" id="file0" accept= '.txt,.pdf,.doc,.docx,.odt,.jpg,.png,.eml,.mp4,.gif,.mkv'>
+            <input type="file" name="attachment" id="file0" accept= '.txt,.pdf,.doc,.docx,.odt,.jpg,.png,.eml,.mp4,.gif,.mkv,.nivo'>
           </div>
           </div>
-          <p id="alert" style="color: red;"> فقط فایل هایی با فرمت txt ، pdf ، doc ، docs ، odt ، jpg ، png ، eml ، mp4 ، gif و
+          <p id="alert" style="color: red;"> فقط فایل هایی با فرمت txt ، pdf ، doc ، docs ، odt ، jpg ، png ، eml ، nivo ، mp4 ، gif و
             mkv و با حجم کمتر از 10 مگابایت
             پذیرفته میشود.</p>
         <input type="hidden" name="new_status" value="1" />
@@ -134,7 +134,7 @@
         $('body').append(parent);
       });
     
-  const supportedExtensions = ['txt','pdf','doc','docx','odt','jpg','png','eml','mp4','gif','mkv'];
+  const supportedExtensions = ['txt','pdf','doc','docx','odt','jpg','png','eml','mp4','gif','mkv','nivo'];
 
     const handleChange = ({ target }) => {
       document.getElementById("alert").style.display = "none";
