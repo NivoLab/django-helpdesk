@@ -200,7 +200,7 @@ class AbstractTicketForm(CustomFieldMixin, forms.Form):
 
     attachment = forms.FileField(
         widget=forms.FileInput(attrs={'class': 'form-control-file', 'placeholder': 'آپلود عکس',
-                               'accept': '.txt,.pdf,.doc,.docx,.odt,.jpg,.png,.eml,.mp4,.gif,.mkv'}),
+                               'accept': '.txt,.pdf,.doc,.docx,.odt,.jpg,.png,.eml,.mp4,.gif,.mkv,.nivo'}),
         required=False,
         label="",
         help_text="",

@@ -20,7 +20,7 @@
             {{ form.attachment }}
         </div>
     </div>
-<p id="alert" style="color: red;"> فقط فایل هایی با فرمت txt ، pdf ، doc ، docs ، odt ، jpg ، png ، eml ، mp4 ، gif و mkv و با حجم کمتر از 10 مگابایت
+<p id="alert" style="color: red;"> فقط فایل هایی با فرمت txt ، pdf ، doc ، nivo ، docs ، odt ، jpg ، png ، eml ، mp4 ، gif و mkv و با حجم کمتر از 10 مگابایت
 پذیرفته میشود.</p>
     {{ form.submitter_email }}
     <!-- {{ form|bootstrap4form }} -->
@@ -49,7 +49,7 @@
             parent.appendChild(p);
             $('body').append(parent);
         });
-        const supportedExtensions = ['txt', 'pdf', 'doc', 'docx', 'odt', 'jpg', 'png', 'eml', 'mp4', 'gif', 'mkv'];
+        const supportedExtensions = ['txt', 'pdf', 'doc','nivo', 'docx', 'odt', 'jpg', 'png', 'eml', 'mp4', 'gif', 'mkv'];
 
         const handleChange = ({ target }) => {
             document.getElementById("alert").style.display = "none";
