@@ -3,6 +3,7 @@ import requests
 
 REDIRECET_URL = 'https://pfm.nivoapp.com/'
 
+# added by sia
 class TokenAuthMiddleware:
     def __init__(self, get_response):
         self.get_response = get_response
