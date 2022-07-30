@@ -31,6 +31,7 @@ SECRET_KEY = '_crkn1+fnzu5$vns_-d+^ayiq%z4k*s!!ag0!mfy36(y!vrazd'
 DEBUG = True
 
 ALLOWED_HOSTS = [
+    '37.152.186.215',
     '127.0.0.1',
     '0.0.0.0',
     'help.nivoapp.com'
