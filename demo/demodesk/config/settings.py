@@ -8,13 +8,14 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/1.11/ref/settings/
 """
 
-import os
+import os, sys
 import environ
 
 env = environ.Env()
 # reading .env file
 environ.Env.read_env()
 
+sys.path.append('../')
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -143,21 +144,7 @@ LOGIN_REDIRECT_URL = 'helpdesk:home'
 #   configure MySQL or PostgreSQL, see the docs for more:
 # https://docs.djangoproject.com/en/1.11/ref/settings/#databases
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-#     }
-# }
-
 DATABASES = {
-    # 'default':{
-    #     'ENGINE': 'django.db.backends.postgresql',
-    #     'NAME': 'nivo_help',
-    #     'USER': 'nivohelpuser',
-    #     'HOST': '45.82.139.99',
-    #     'PASSWORD': '123#n!rv4n4',
-    # } 
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': env("DATABASE_NAME"),

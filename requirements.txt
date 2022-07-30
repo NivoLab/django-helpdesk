@@ -16,3 +16,4 @@ django-model-utils
 kavenegar
 psycopg2-binary
 django-environ
+gunicorn==20.1.0
